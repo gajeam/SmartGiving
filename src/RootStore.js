@@ -5,12 +5,6 @@ import data from './data/user'
 import requests from './data/requests'
 
 
-const initialState = {
-	donationDrawerOpen: false,
-	selectedRequest: {},
-	...data,
-	...requests
-}
 
 export const store = createStore(
 	updateDrawer,
