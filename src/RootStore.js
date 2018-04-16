@@ -11,8 +11,3 @@ const initialState = {
 	...data,
 	...requests
 }
-
-export const store = createStore(
-	updateDrawer,
-	initialState
-)
