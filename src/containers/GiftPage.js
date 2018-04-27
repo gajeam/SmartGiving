@@ -5,7 +5,8 @@ import RequestTable from "../components/RequestTable"
 import DrawerFactory from "../components/DrawerFactory"
 import ContactInfo from "../components/ContactInfo"
 import { ImageLibrary } from "../components/ImageLibrary"
-
+import {isObjectEmpty} from '../components/Helpers'
+import GiftTextFactory from '../components/GiftTextFactory'
 import { GetAllOpenGifts } from "../backend/APIManager"
 
 import {
@@ -20,7 +21,7 @@ import {
 } from "material-ui"
 import { kStyleElevation, kStylePaper } from "../style/styleConstants"
 
-import { toggleDrawer, selectRequest } from "../redux/actions"
+import { toggleDrawer, selectCharity } from "../redux/actions"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
 
@@ -30,12 +31,21 @@ import "../style/GiftPage.css"
 class GiftPage extends Component {
   constructor(props) {
     super(props)
-    this.state = { donationValue: 0, charity: {}, gift: { items: [] } }
-    this.giftData.bind(this)
+    const locationState = this.props.location.state
+    const charity = locationState === undefined ? {} : locationState.charity
+    const gift = locationState === undefined ? { items: [] } : charity.gifts[0]
+
+    this.state = { charity, gift, donationValue: 0, }
     this.defaultCost.bind(this)
   }
 
   componentDidMount() {
+    // If we got provided a charity already, we don't need to reload it
+    if (!isObjectEmpty(this.state.charity)) {
+      return
+    }
+
+    // Otherwise, load it from the database
     const charityID = this.props.match.params.charityID
     const dbCompletion = (data, err) => {
       if (err) {
@@ -58,13 +68,6 @@ class GiftPage extends Component {
     }
 
     GetAllOpenGifts(dbCompletion)
-  }
-
-  giftData() {
-    const storeState = this.props.store.getState()
-    return storeState.globalData.requests.filter(
-      request => request.ethGiftAddr === this.props.match.params.giftID
-    )[0]
   }
 
   defaultCost(gift) {
@@ -100,6 +103,18 @@ class GiftPage extends Component {
       })
       this.props.showDonate(true, donationValue(), this.state.charity)
     }
+
+    const shippingSection = (textInfo) => {
+      if (textInfo.location === undefined) return
+      return (
+        <div className="gift-donation-money-section gift-donation-shipping">
+          Shipping Address: <span className="gift-donation-shipping-address">{textInfo.location}</span>
+        </div>
+        )
+    }
+
+    const userType = this.props.match.params.userType
+    const textInfo = GiftTextFactory(userType, this.state.charity)
     return (
       <div>
         <NavBar />
@@ -142,6 +157,8 @@ class GiftPage extends Component {
                 />
                 <div className="gift-donation-section">
                   <div className="gift-donation-money-section">
+                    {shippingSection(textInfo)}
+
                     <div className="gift-donation-estimate">
                       {" "}
                       Estimated Cost of Goods:{" "}
@@ -152,7 +169,7 @@ class GiftPage extends Component {
                       </span>
                     </div>
                     <div className="gift-donation-fill-donation">
-                      <span className="gift-your-donation">Your Donation:</span>
+                      <span className="gift-your-donation">{textInfo.moneyDescription}:</span>
                       <FormControl>
                         <TextField
                           InputProps={{
@@ -184,7 +201,7 @@ class GiftPage extends Component {
                     color="primary"
                     onClick={selectDonate}
                   >
-                    Donate
+                    {textInfo.donateButton}
                   </Button>
                 </div>
               </Paper>
@@ -203,7 +220,7 @@ class GiftPage extends Component {
             request={this.state.gift}
             charity={this.state.charity}
             donationValue={parseFloat(donationValue())}
-            type="donate"
+            type={userType}
           />
         </div>
       </div>
@@ -214,7 +231,7 @@ class GiftPage extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     showDonate: (showDrawer, donationValue, request = {}) => {
-      dispatch(selectRequest(request))
+      dispatch(selectCharity(request))
       dispatch(toggleDrawer(showDrawer, donationValue))
     }
   }
