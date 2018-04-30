@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import {Drawer, Button, TextField, FormControl, FormHelperText} from 'material-ui';
 
 import RequestTable from './RequestTable'
-import {StringFromLocation, DollarsToEther} from '../style/Formatter'
-import {PriceForItems} from '../components/Helpers'
+import {StringFromLocation, WeiToEther} from '../style/Formatter'
 import {isObjectEmpty} from '../components/Helpers'
 
 class BidDrawer extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {"bid" : -1}
+		this.state = {"bid" : props.bid}
 	}
 	render() {
 		const charity = this.props.charity
@@ -31,7 +30,7 @@ class BidDrawer extends Component {
 		}
 		const currentBid = () => {
 			if (this.state.bid === -1 && gift !== undefined) {
-				return DollarsToEther(PriceForItems(gift.items, "quantity", "pricePerUnit"))
+				return WeiToEther(gift.donorDonationAmt)
 			}
 			return this.state.bid
 		}
@@ -56,7 +55,7 @@ class BidDrawer extends Component {
 
 				</div>
 				<div className = "drawer-button-container">
-					<Button className = "drawer-button" onClick = {this.props.data.onPrimary} variant="raised" size="medium" color="primary">Bid</Button>
+					<Button className = "drawer-button" onClick = {this.props.data.onPrimary(currentBid())} variant="raised" size="medium" color="primary">Bid</Button>
 					<Button className = "drawer-button" onClick = {this.props.data.onSecondary} variant="raised" size="medium" color="default">Cancel</Button>
 				</div>
 				<div className = "drawer-description donate-post-description">

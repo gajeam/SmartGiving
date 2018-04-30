@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
 
+import {PriceForItems} from '../components/Helpers'
 import UserAvatar from './UserAvatar';
 import {DollarsToEther} from '../style/Formatter'
 
@@ -12,7 +13,7 @@ class DonationDrawer extends Component {
 	render() {
 		const request = this.props.charity.gifts !== undefined ? this.props.charity.gifts[0] : {}
 		const charity = this.props.charity
-		const donationValue = this.props.donationValue === undefined ? request.dollars : this.props.donationValue
+		const donationValue = this.props.donationValue === undefined ? PriceForItems(request.items) : this.props.donationValue
 		return (
 		<Drawer anchor="bottom" open={this.props.data.open} onClose={this.props.data.onClose}>
 			<div className="drawer-container">
@@ -31,7 +32,7 @@ class DonationDrawer extends Component {
 				(Your payment will be processed once a merchant and recipient agree on delivering and receiving your gifts before the expiration date.)
 				</div>
 				<div className = "drawer-button-container">
-					<Button className = "drawer-button" onClick = {this.props.data.onPrimary} variant="raised" size="medium" color="primary">Donate</Button>
+					<Button className = "drawer-button" onClick = {this.props.data.onPrimary(donationValue)} variant="raised" size="medium" color="primary">Donate</Button>
 					<Button className = "drawer-button" onClick = {this.props.data.onSecondary} variant="raised" size="medium" color="default">Cancel</Button>
 				</div>
 				<div className = "drawer-description donate-post-description">

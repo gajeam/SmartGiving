@@ -19,6 +19,12 @@ module.exports = app => {
     const recipients = await Recipient.find({}, { _id: 0, __v: 0 });
     res.json(recipients);
   });
+
+  app.get("/api/getMerchants", async function(req, res) {
+    const merchants = await Merchant.find({}, { _id: 0, __v: 0 });
+    res.json(merchants);
+  });
+
   //*************** Working with Gabe ***************//
 
   app.get("/api/updateDB", async function(req, res) {
@@ -100,16 +106,6 @@ module.exports = app => {
       res.json({ message: ethData });
     };
     GetEthereumGifts(completion);
-  });
-
-  app.get("/recipients", async (req, res) => {
-    const recipients = await Recipient.find({}, { _id: 0, __v: 0 }).sort({
-      title: 1
-    });
-    // res.send(recipients);
-    console.log(res.data);
-    res.json(recipients);
-    fs.writeFile("../output/recipients.json", JSON.stringify(recipients));
   });
 
   //Get Active gifts for DONOR
