@@ -15,7 +15,7 @@ export const ChooseMerchant = async (ethData, completion) => {
 			.recipientPicksMerchant(ethData.merchantAddress) // address of merchant that gets selected
 			.send({
 				from: accounts[0],
-				gas: 2000000
+				gas: 5000000
 			})
 		if (selectionResult.status === "0x0" || !selectionResult.status) {
 			const err = new Error ("Transaction returned a bad status")

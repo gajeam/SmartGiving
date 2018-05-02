@@ -106,15 +106,15 @@ class App extends Component {
 							/>
 							<Route
 								path="/createrequest"
-								component={() => <CreateRequest store={this.props.store} />}
+								component={() => <CreateRequest store={this.props.store} account={this.state.account}/>}
 							/>
 							<Route
 								path="/getallstats"
 								component={() => <GetAllStats store={this.props.store} />}
 							/>
 							<Route
-								path="/selectmerchant/:charityID"
-								component={() => <SelectMerchant store={this.props.store} />}
+								path="/selectmerchant"
+								component={() => <SelectMerchant store={this.props.store} account={this.state.account}/>}
 							/>
 							<Route
 								path="/itemreceived"
