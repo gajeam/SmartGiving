@@ -18,7 +18,6 @@ import CreateRequest from './containers/CreateRequest'
 import ThankYou from './containers/ThankYou'
 import GiftPage from './containers/GiftPage'
 import GetAllStats from './ethereum/components/GetAllStats'
-import SelectMerchant from './containers/SelectMerchant'
 import GetActiveGifts from "./containers/GetActiveGifts"
 import ItemReceivedPage from "./containers/ItemReceivedPage"
 import Team from './containers/Team'
@@ -112,10 +111,6 @@ class App extends Component {
 							<Route
 								path="/getallstats"
 								component={() => <GetAllStats store={this.props.store} />}
-							/>
-							<Route
-								path="/selectmerchant"
-								component={() => <SelectMerchant store={this.props.store} account={this.state.account}/>}
 							/>
 							<Route
 								path="/itemreceived"

@@ -9,7 +9,7 @@ import { withStyles } from 'material-ui/styles';
 import Badge from 'material-ui/Badge';
 import Typography from 'material-ui/Typography';
 
-import {GetAllOpenGifts} from '../backend/APIManager'
+import {FetchGift} from '../backend/APIHelper'
 
 
 
@@ -27,35 +27,15 @@ class CharityHome extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {
-		    activeStep: 0,
-		    completed: new Set(),
-		    skipped: new Set(),
-	  	}
+		this.state = {}
 	}
 
 	componentDidMount() {
 		if (this.props.account === undefined)
 			return
-		GetAllOpenGifts((data, err) => {
-			if (err !== undefined){
-				alert(err)
-				return
-			}
-			const charityFilter = data.filter(d => d.ethRecipientAddr === this.props.account)
-			if (charityFilter.length === 0) {
-				alert(new Error(`No charity set for ${this.props.account}`))
-				return
-			}
-			const charity = charityFilter[0]
-			let gift
-			try {
-				gift = charity.gifts[0]
-			} catch(err) {
-				gift = undefined
-			}
-			this.setState({charity, gift})
-		})
+		FetchGift(this.props.account, (charity, gift) => {
+			this.setState({charity, gift})	
+		} )
 	}
 
 
@@ -68,7 +48,6 @@ class CharityHome extends Component {
 		<div>
 
 		  <NavBar/>
-
 		  <div className='charity-status-container'>
 			{/*top half of the page*/}
 			  <CharityHomeTop charity={this.state.charity}/>
@@ -91,7 +70,6 @@ class CharityHome extends Component {
 						<Typography variant="subheading" alignleft='true' paragraph>
 						  Click on each status to see more information
 						</Typography>
-						<CharityStatusBar/>
 					</div>
 				}
 	      		{this.state.gift === undefined &&
@@ -104,6 +82,8 @@ class CharityHome extends Component {
 						</Typography>
 					</div>
 				}
+				<CharityStatusBar charity={this.state.charity} gift={this.state.gift} account={this.props.account}/>
+
 
 			  </div>
 		  </div>
