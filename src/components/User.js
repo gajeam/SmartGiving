@@ -1,4 +1,3 @@
-import userData from '../data/user'
 import web3 from '../ethereum/web3'
 
 export const UserType = {

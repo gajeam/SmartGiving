@@ -1,7 +1,5 @@
 import { createStore, combineReducers } from 'redux'
-import { updateDrawer, updateNewGift, globalData } from './redux/reducers'
-
-import data from './data/user'
+import { updateDrawer, updateNewGift } from './redux/reducers'
 
 
 const initialState = {
@@ -13,16 +11,12 @@ const initialState = {
 	updateNewGift: {
 		giftData: {},
 	},
-	globalData: {
-		...data,
-	}
 }
 
 export const store = createStore(
 	combineReducers({
 		updateDrawer,
 		updateNewGift,
-		globalData
 	}),
 	initialState
 )

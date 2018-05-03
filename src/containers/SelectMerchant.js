@@ -7,7 +7,7 @@ import NavBar from "../components/NavBar"
 import '../style/SelectMerchant.css'
 import {kStyleElevation, kStylePaper} from '../style/styleConstants'
 import {WeiToDollars} from '../style/Formatter'
-import {containsObject, isObjectEmpty} from '../components/Helpers'
+import {containsObject} from '../components/Helpers'
 
 import {ChooseMerchant} from '../ethereum/components/ChooseMerchant'
 import {ChooseMerchantRequest} from '../backend/EthereumRequestManager'

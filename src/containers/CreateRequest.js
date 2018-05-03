@@ -6,7 +6,6 @@ import NavBar from '../components/NavBar'
 import DescribeGift from '../components/DescribeGift'
 import ItemizeGift from '../components/ItemizeGift'
 import NewGiftSummary from '../components/NewGiftSummary'
-import {UserType} from '../components/User'
 import {PriceForItems} from '../components/Helpers'
 
 import {CreateNewGift} from "../backend/APIManager";
