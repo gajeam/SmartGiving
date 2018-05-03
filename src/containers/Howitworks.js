@@ -225,7 +225,7 @@ class Howitworks extends Component {
 
 			  <div className='ScrollAllWayUpContainer'><ScrollAllWayUp /> </div>
 			  
-			  
+			<p style={{fontSize: '0.8em', textAlign: 'center'}}> Acknowledgements. The store icon is created by b farias; the shopping cart icon is by tonicons.com; the textbooks and graduation caps - pngtree.com. Characters of Aida, Donna, childrean and scroll are created by Bonney Ruan.</p>
 		</div>
     );
   }
