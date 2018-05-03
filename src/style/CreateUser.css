@@ -1,0 +1,14 @@
+.create-user-textfield-container  {
+	margin:20px;
+	min-width: 200px
+	/*padding:0px;*/
+}
+
+.create-user-all-textfields{
+	display:flex;
+	flex-wrap: wrap;
+}
+
+.create-user-address {
+	font-weight: 800;
+}
