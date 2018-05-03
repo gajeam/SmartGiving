@@ -3,7 +3,7 @@ import {UserType} from '../components/User'
 import {TextField, Button} from 'material-ui'
 import NavBar from '../components/NavBar'
 
-import {CreateNewRecipient} from '../backend/APIManager'
+import {CreateNewRecipient, GetAllOpenGifts} from '../backend/APIManager'
 
 import '../style/CreateUser.css'
 
@@ -14,6 +14,7 @@ class CreateRecipient extends Component {
 		const createAPI = CreateNewRecipient
 		return <CreateUserFactory fields={fields}
 									createAPI={createAPI}
+									fetchAPI={GetAllOpenGifts}
 									addressField={addressField}
 									address={this.props.address}/>
 	}
@@ -24,11 +25,17 @@ class CreateUserFactory extends Component {
 	constructor(props) {
 		super(props)
 		const addressField = this.props.addressField
-		this.state={[this.props.addressField]: this.props.address}
+		this.state={[this.props.addressField]: this.props.address, gifts:[]}
 	}
+	componentDidMount() {
+		GetAllOpenGifts((gifts) => this.setState({gifts}))
+	}
+
 	render() {
 
 		const buttonFunc = () => {
+			let params = this.state
+			params.gifts = undefined
 			this.props.createAPI(this.state, (err) => {
 				if (err === undefined) alert(`Created a new user for ETH address ${this.props.address}`)
 				else alert(err)
@@ -43,16 +50,29 @@ class CreateUserFactory extends Component {
 				</div>
 			)
 		}
+
+		const existingUser = () => {
+			 const user = this.state.gifts.filter(g => g[this.props.addressField] === this.props.address)
+			 return user.length === 0 ? undefined : user[0]
+		}
+		const containsUser = () => existingUser() !== undefined && this.props.address !== undefined
 		return (
 			<div>
 				<div className = "create-user-all-textfields">
 					{this.props.fields.map((f, i) => textField(f, i))}
 				</div>
-				<div className = "create-user-address=field">
-					{this.props.addressField} for user is
-					<span className = "create-user-address"> {this.props.address !== undefined ? this.props.address : "not set"}</span>
-				</div>
-				<Button onClick={buttonFunc} style={{margin:"10px"}} variant="raised" color="secondary">Create User</Button>
+				{!containsUser() &&
+					<div className = "create-user-address-field">
+						{this.props.addressField} for user is
+						<span className = "create-user-address"> {this.props.address !== undefined ? this.props.address : "not set"}</span>
+					</div>
+				}
+				{containsUser() &&
+					<div className = "create-user-address-found">
+						{this.props.address} already exists for user {existingUser().title}.
+					</div>
+				}
+				<Button disabled={containsUser()} onClick={buttonFunc} style={{margin:"10px"}} variant="raised" color="secondary">Create User</Button>
 			</div>
 		)
 	}
