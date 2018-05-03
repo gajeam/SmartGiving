@@ -73,8 +73,9 @@ class SelectMerchant extends Component {
 
     const onSelect = (merchant) => () => {
       const blockchainCompletion = (error) => {
+
         if (error) console.log(error)
-        else       alert("You've selected a merchant, maybe.")
+        else       UpdateDatabase(() => alert("You've selected a merchant, maybe."))
       }
       const ethData = ChooseMerchantRequest(this.props.gift, merchant.ethMerchantAddr)
       ChooseMerchant(ethData, blockchainCompletion)

@@ -90,8 +90,6 @@ class CharityStatusBar extends Component {
 
     const gift = this.props.gift
     const giftStatus = StatusForGift(gift)
-    console.log(`Gift status: ${giftStatus}`)
-    console.log(gift)
 
     const { classes } = this.props;
     const steps = getSteps();

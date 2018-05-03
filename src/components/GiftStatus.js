@@ -13,7 +13,6 @@ export const StatusForGift = gift => {
 	if (gift === undefined) {
 		return GiftStatus.NONE
 	} else if (isEmpty(gift.ethDonorAddr)) {
-		console.log(gift.ethDonorAddr)
 		return GiftStatus.POSTED
 	} else if (gift.itemReceived === true) {
 		return GiftStatus.DELIVERED
