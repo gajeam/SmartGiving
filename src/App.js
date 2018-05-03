@@ -22,6 +22,7 @@ import SelectMerchant from './containers/SelectMerchant'
 import GetActiveGifts from "./containers/GetActiveGifts"
 import ItemReceivedPage from "./containers/ItemReceivedPage"
 import Team from './containers/Team'
+import CreateUser from './containers/CreateUser'
 import {PollUserAddress, CancelPollUserAddress} from './components/User'
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
@@ -123,6 +124,10 @@ class App extends Component {
 							<Route
 								path="/getActiveGifts"
 								component={() => <GetActiveGifts store={this.props.store} />}
+							/>
+							<Route
+								path="/createuser"
+								component={() => <CreateUser account={this.state.account}/>}
 							/>
 							<Route component={Whoops404} />
 						</Switch>
