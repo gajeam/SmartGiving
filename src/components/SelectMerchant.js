@@ -1,18 +1,16 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router"
 
 import {Avatar, Paper, Divider, Radio, Button} from 'material-ui'
-
-import NavBar from "../components/NavBar"
 
 import '../style/SelectMerchant.css'
 import {kStyleElevation, kStylePaper} from '../style/styleConstants'
 import {WeiToDollars} from '../style/Formatter'
-import {containsObject, isObjectEmpty} from '../components/Helpers'
+import {containsObject} from '../components/Helpers'
 
 import {ChooseMerchant} from '../ethereum/components/ChooseMerchant'
 import {ChooseMerchantRequest} from '../backend/EthereumRequestManager'
-import {FetchGift, FetchMerchants} from '../backend/APIHelper'
+import {FetchMerchants} from '../backend/APIHelper'
+import {UpdateDatabase} from '../backend/APIManager'
 
 class SelectMerchant extends Component {
 
@@ -23,28 +21,29 @@ class SelectMerchant extends Component {
   
   componentDidMount() {
     // If we got provided a charity already, we don't need to reload it
-    if (!isObjectEmpty(this.state.charity)) {
+    const charityID = this.props.account
+    if (charityID === undefined || this.props.gift === undefined) {
       return
     }
-    // Otherwise, load it from the database
-    const charityID = this.props.match.params.charityID
-    FetchGift(charityID, (charity, gift) => {
-      FetchMerchants(gift, (merchants) => {
-        this.setState({charity, gift, merchants})
+    
+    FetchMerchants(this.props.gift, (merchants) => {
+      UpdateDatabase(() => {
+        // TODO @Gabe show thanks or whatever
+        this.setState({merchants})
       })
     })
   }
 
   render() {
 
-    if (this.state.merchants === undefined)
-      return <div/>
+    if (this.state.merchants === undefined || this.props.account === undefined)
+      return <div>Loading merchants...</div>
 
     const merchantInfo = this.state.merchants.reduce((finalVal, m) => {
       finalVal[m.ethMerchantAddr] = m
       return finalVal
     }, {})
-    const merchants = this.state.gift.bids.map((b, i) => {
+    const merchants = this.props.gift.bids.map((b, i) => {
       let bid = b
       bid['info'] = merchantInfo[b.ethMerchantAddr]
       return bid
@@ -74,10 +73,11 @@ class SelectMerchant extends Component {
 
     const onSelect = (merchant) => () => {
       const blockchainCompletion = (error) => {
-        if (error) alert(error)
-        else       alert("You've selected a merchant, maybe.")
+
+        if (error) console.log(error)
+        else       UpdateDatabase(() => alert("You've selected a merchant, maybe."))
       }
-      const ethData = ChooseMerchantRequest(this.state.gift, merchant.ethMerchantAddr)
+      const ethData = ChooseMerchantRequest(this.props.gift, merchant.ethMerchantAddr)
       ChooseMerchant(ethData, blockchainCompletion)
     }
 
@@ -87,8 +87,6 @@ class SelectMerchant extends Component {
 
     return (
         <div>
-          <NavBar title={"Select Merchant"} />
-          <div className="page-container">
             <Paper elevation={kStyleElevation} style={kStylePaper}>
             <MerchantOptionHeader/>
             {
@@ -111,7 +109,6 @@ class SelectMerchant extends Component {
               />
             </Paper>
           </div>
-        </div>
       )
   }
 }
@@ -198,5 +195,5 @@ class MerchantSelected extends Component {
   }
 }
 
-export default withRouter(SelectMerchant)
+export default SelectMerchant
 

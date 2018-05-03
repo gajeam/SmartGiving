@@ -1,4 +1,3 @@
-import userData from '../data/user'
 import web3 from '../ethereum/web3'
 
 export const UserType = {
@@ -7,14 +6,8 @@ export const UserType = {
 	RECIPIENT: "recipient"
 }
 
-export const UserInfo = type => {
-	return userData[type]
-}
-
 
 // Always be polling for an update in Ethereum address
-
-
 
 // TODO: @Gabe be good about checking to see if this is undefined.
 // We may need some kind of MetaMask error page

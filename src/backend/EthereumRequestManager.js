@@ -14,7 +14,7 @@ export const BidRequest = (charity, money) => {
 	const gift = charity.gifts[0]
 	return {
 		giftAddress : gift.ethGiftAddr,
-		ether: money.toString()
+		ether: (money - 10).toString() // subtract ten for safety
 	}
 }
 

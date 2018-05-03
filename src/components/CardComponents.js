@@ -107,7 +107,7 @@ const merchantStatus = (request, merchantAddress) => {
 }
 
 const minimumBid = (request) => {
-	return request.bids.reduce((finalBid, b) => Math.min(finalBid, b.bidAmt), Number.MAX_SAFE_INTEGER)
+	return request.bids.reduce((finalBid, b) => Math.min(finalBid, b.bidAmt), Infinity)
 }
 
 /* EXPORTS */

@@ -18,10 +18,9 @@ import CreateRequest from './containers/CreateRequest'
 import ThankYou from './containers/ThankYou'
 import GiftPage from './containers/GiftPage'
 import GetAllStats from './ethereum/components/GetAllStats'
-import SelectMerchant from './containers/SelectMerchant'
 import GetActiveGifts from "./containers/GetActiveGifts"
-import ItemReceivedPage from "./containers/ItemReceivedPage"
 import Team from './containers/Team'
+import CreateUser from './containers/CreateUser'
 import {PollUserAddress, CancelPollUserAddress} from './components/User'
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
@@ -89,7 +88,7 @@ class App extends Component {
 
 							<Route
 								path="/home/charity"
-								component={() => <CharityHome store={this.props.store} />}
+								component={() => <CharityHome store={this.props.store} account={this.state.account}/>}
 							/>
 
 							<Route
@@ -106,23 +105,19 @@ class App extends Component {
 							/>
 							<Route
 								path="/createrequest"
-								component={() => <CreateRequest store={this.props.store} />}
+								component={() => <CreateRequest store={this.props.store} account={this.state.account}/>}
 							/>
 							<Route
 								path="/getallstats"
 								component={() => <GetAllStats store={this.props.store} />}
 							/>
 							<Route
-								path="/selectmerchant/:charityID"
-								component={() => <SelectMerchant store={this.props.store} />}
-							/>
-							<Route
-								path="/itemreceived"
-								component={() => <ItemReceivedPage account={this.state.account}/>}
-							/>
-							<Route
 								path="/getActiveGifts"
 								component={() => <GetActiveGifts store={this.props.store} />}
+							/>
+							<Route
+								path="/createuser"
+								component={() => <CreateUser account={this.state.account}/>}
 							/>
 							<Route component={Whoops404} />
 						</Switch>
