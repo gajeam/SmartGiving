@@ -21,14 +21,15 @@ class MerchantHome extends Component {
     const priceFunc = (gift) => WeiToEther(gift.donorDonationAmt)
     const filter = HomepageFilter(true)
     const sectioningFunc = (recipients) => {
-      const fulfilledFilter = (fulfilled) => (charity) => {
-        const gift = charity.gifts[0]
-        return fulfilled !== (gift.ethMerchantAddr === undefined || gift.ethMerchantAddr.length === 0)
+      const bidFilter = (fulfilled) => (charity) => {
+        const bids = charity.gifts[0].bids
+        if (charity.gifts[0].itemReceived === true) return false
+        return fulfilled === bids.reduce((final, b) => {return final || b.ethMerchantAddr === this.props.account}, false)
       }
 
       let sections = []
-      const activeBids = recipients.filter(fulfilledFilter(true))
-      const openBids = recipients.filter(fulfilledFilter(false))
+      const activeBids = recipients.filter(bidFilter(true))
+      const openBids = recipients.filter(bidFilter(false))
 
       if (openBids.length !== 0)  sections.push({charities: openBids})
       if (activeBids.length !== 0)  sections.push({title: "Active Bids", charities: activeBids})

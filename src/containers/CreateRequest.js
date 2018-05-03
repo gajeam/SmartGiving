@@ -6,7 +6,6 @@ import NavBar from '../components/NavBar'
 import DescribeGift from '../components/DescribeGift'
 import ItemizeGift from '../components/ItemizeGift'
 import NewGiftSummary from '../components/NewGiftSummary'
-import {UserType, UserInfo} from '../components/User'
 import {PriceForItems} from '../components/Helpers'
 
 import {CreateNewGift} from "../backend/APIManager";
@@ -28,7 +27,8 @@ class CreateRequest extends Component {
 	}
 
 	render() {
-		const user = UserInfo(UserType.RECIPIENT)
+		const account = this.props.account
+		console.log(`Account: ${account}`)
 		const handleSubmit = () => {
 			const items = this.state.gift.items.map((itemObj, i) => {
 				return {
@@ -40,7 +40,7 @@ class CreateRequest extends Component {
 			const giftJSON = {
 				items,
 				title: this.state.gift.description,
-				ethRecipientAddr: user.ethRecipientAddr,
+				ethRecipientAddr: account,
 				expiry: this.state.gift.expiration,
 				dollars: PriceForItems(items, true),
 
@@ -66,7 +66,7 @@ class CreateRequest extends Component {
 		const displayData = {
 			"Basic Information" : <DescribeGift store={this.props.store} onUpdate = {updateGift} gift={this.state.gift}/>,
 			"List of Goods" : <ItemizeGift store={this.props.store} onUpdate = {updateGift} gift={this.state.gift}/>,
-			"Let's do it": <NewGiftSummary user={user} gift={this.state.gift}/>
+			"Let's do it": <NewGiftSummary gift={this.state.gift}/>
 		}
 		return (
 			<div>

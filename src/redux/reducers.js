@@ -32,7 +32,3 @@ export const updateNewGift = (state = {}, action) => {
 			return state
 	}
 }
-
-export const globalData = (state = {}, action) => {
-	return state
-}
