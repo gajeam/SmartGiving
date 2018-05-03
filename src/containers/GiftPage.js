@@ -6,9 +6,9 @@ import DrawerFactory from "../components/DrawerFactory"
 import ContactInfo from "../components/ContactInfo"
 import { ImageLibrary } from "../components/ImageLibrary"
 import {isObjectEmpty, PriceForItems} from '../components/Helpers'
-import {WeiToEther} from '../style/Formatter'
+import {WeiToEther, DigitsPerEther} from '../style/Formatter'
 import GiftTextFactory from '../components/GiftTextFactory'
-import { GetAllOpenGifts } from "../backend/APIManager"
+import { FetchGift } from '../backend/APIHelper'
 
 import {
   Paper,
@@ -44,35 +44,14 @@ class GiftPage extends Component {
     if (!isObjectEmpty(this.state.charity)) {
       return
     }
-
     // Otherwise, load it from the database
     const charityID = this.props.match.params.charityID
-    const dbCompletion = (data, err) => {
-      if (err) {
-        alert(`${err}\nPerhaps the database isn't running.`)
-        return
-      }
-      const charity = data.reduce((finalChar, currentChar) => {
-        return currentChar.ethRecipientAddr === charityID ? currentChar : finalChar
-      }, undefined)
-      if (charity === undefined) {
-        console.warn(`Cannot find charity for id ${charityID}`)
-        return
-      } else if (charity.gifts === undefined || charity.gifts.length === 0) {
-          console.warn(`Cannot find gifts for charity with id ${charityID}`)
-        }
-      else {
-        const gift = charity.gifts[0]
-        this.setState({ charity, gift })
-      }
-    }
-
-    GetAllOpenGifts(dbCompletion)
+    FetchGift(charityID, (charity, gift) => this.setState({charity, gift}))
   }
 
   defaultCost(useDollars, gift) {
     if (useDollars) return PriceForItems(gift.items)
-    return WeiToEther(gift.donorDonationAmt).toFixed(5)
+    return WeiToEther(gift.donorDonationAmt)
   }
 
   render() {
@@ -110,7 +89,7 @@ class GiftPage extends Component {
         return unit + Math.floor(val).toFixed(2) 
       }
       else {
-        return unit + " " + parseFloat(val).toFixed(5)
+        return unit + " " + parseFloat(val).toFixed(DigitsPerEther)
       }
     }
 

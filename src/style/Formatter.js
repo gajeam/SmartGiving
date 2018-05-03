@@ -1,4 +1,5 @@
 const weiPerEther = 1000000000000000000.0
+export const DigitsPerEther = 5
 
 export const StringFromDate = (a) => {
 	// Shout out to StackOverflow
@@ -17,14 +18,9 @@ export const UnixFromString = (s) => {
 	return date.getTime()
 }
 
-export const StringFromLocation = (location) => {
-	if (location === undefined) return ''
-	return `${location.address}, ${location.city}, ${location.state}, ${location.country}`
-}
-
 export const DollarsToEther = (dollars) => {
 	const dollarsPerEther = 421.0 // TODO: Get this price dynamically
-	return (parseFloat(dollars)/dollarsPerEther).toFixed(5)
+	return (parseFloat(dollars)/dollarsPerEther).toFixed(DigitsPerEther)
 }
 
 export const PriceForGift = (gift) => {
@@ -39,5 +35,5 @@ export const WeiToDollars = (wei) => {
 }
 
 export const WeiToEther = (wei) => {
-	return wei / weiPerEther
+	return (parseFloat(wei / weiPerEther)).toFixed(DigitsPerEther)
 }
