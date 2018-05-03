@@ -5,6 +5,8 @@ import Typography from 'material-ui/Typography';
 
 import {GiftStatus, StatusForGift} from '../components/GiftStatus'
 import SelectMerchant from '../components/SelectMerchant'
+import ItemReceivedButton from '../components/ItemReceivedButton'
+
 import "../style/Components.css";
 
 const styles = theme => ({
@@ -45,7 +47,8 @@ function getStepContent(step) {
       return 'Step 5: Merchant will confirm when they ship the goods';
     case 5: 
       return 'Step 6: Verify that the package arrived to you safe and sound';
-
+    case 6:
+      return 'Congratulations! You finished your gift.';
     default:
       return 'Unknown step';
   }
@@ -133,6 +136,9 @@ class CharityStatusBar extends Component {
 		        </div>
             {giftStatus === GiftStatus.MERCHANT_BIDDED &&
               <SelectMerchant account={this.props.account} gift={this.props.gift} charity={this.props.charity}/>
+            }
+            {giftStatus === GiftStatus.MERCHANT_SHIPPED &&
+              <ItemReceivedButton charity={this.props.charity}/>
             }
 		      </div>
 

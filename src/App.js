@@ -19,7 +19,6 @@ import ThankYou from './containers/ThankYou'
 import GiftPage from './containers/GiftPage'
 import GetAllStats from './ethereum/components/GetAllStats'
 import GetActiveGifts from "./containers/GetActiveGifts"
-import ItemReceivedPage from "./containers/ItemReceivedPage"
 import Team from './containers/Team'
 import CreateUser from './containers/CreateUser'
 import {PollUserAddress, CancelPollUserAddress} from './components/User'
@@ -111,10 +110,6 @@ class App extends Component {
 							<Route
 								path="/getallstats"
 								component={() => <GetAllStats store={this.props.store} />}
-							/>
-							<Route
-								path="/itemreceived"
-								component={() => <ItemReceivedPage account={this.state.account}/>}
 							/>
 							<Route
 								path="/getActiveGifts"

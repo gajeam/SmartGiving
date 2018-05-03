@@ -9,7 +9,7 @@ import {containsObject} from '../components/Helpers'
 
 import {ChooseMerchant} from '../ethereum/components/ChooseMerchant'
 import {ChooseMerchantRequest} from '../backend/EthereumRequestManager'
-import {FetchGift, FetchMerchants} from '../backend/APIHelper'
+import {FetchMerchants} from '../backend/APIHelper'
 import {UpdateDatabase} from '../backend/APIManager'
 
 class SelectMerchant extends Component {
