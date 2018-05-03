@@ -24,7 +24,6 @@ class CreateRecipient extends Component {
 class CreateUserFactory extends Component {
 	constructor(props) {
 		super(props)
-		const addressField = this.props.addressField
 		this.state={[this.props.addressField]: this.props.address, gifts:[]}
 	}
 	componentDidMount() {
