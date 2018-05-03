@@ -61,7 +61,6 @@ class CharityStatusBar extends Component {
     activeStep: 1,
     completed: new Set(),
     skipped: new Set(),
-    isDrawerOpen: false,
   };
 
 

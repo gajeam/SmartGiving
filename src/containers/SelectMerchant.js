@@ -41,7 +41,7 @@ class SelectMerchant extends Component {
   render() {
 
     if (this.state.merchants === undefined || this.props.account === undefined)
-      return <div/>
+      return <NavBar/>
 
     const merchantInfo = this.state.merchants.reduce((finalVal, m) => {
       finalVal[m.ethMerchantAddr] = m
