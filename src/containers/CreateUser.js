@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import {UserType} from '../components/User'
-import {TextField, Button} from 'material-ui'
+import {TextField, Button, RadioGroup, Radio, FormControlLabel} from 'material-ui'
 import NavBar from '../components/NavBar'
 
-import {CreateNewRecipient, GetAllOpenGifts} from '../backend/APIManager'
+import {CreateNewRecipient, CreateNewMerchant, GetAllOpenGifts, GetAllMerchants} from '../backend/APIManager'
 
 import '../style/CreateUser.css'
 
@@ -16,10 +16,24 @@ class CreateRecipient extends Component {
 									createAPI={createAPI}
 									fetchAPI={GetAllOpenGifts}
 									addressField={addressField}
-									address={this.props.address}/>
+									address={this.props.address}
+									type={UserType.RECIPIENT}/>
 	}
 }
 
+class CreateMerchant extends Component {
+	render() {
+		const fields = ['name', 'email', 'location', 'storeDescription', 'minShipment', 'maxShipment']
+		const addressField = 'ethMerchantAddr'
+		const createAPI = CreateNewMerchant
+		return <CreateUserFactory fields={fields}
+									createAPI={createAPI}
+									fetchAPI={GetAllMerchants}
+									addressField={addressField}
+									address={this.props.address}
+									type={UserType.MERCHANT}/>
+	}
+}
 
 class CreateUserFactory extends Component {
 	constructor(props) {
@@ -27,7 +41,7 @@ class CreateUserFactory extends Component {
 		this.state={[this.props.addressField]: this.props.address, gifts:[]}
 	}
 	componentDidMount() {
-		GetAllOpenGifts((gifts) => this.setState({gifts}))
+		this.props.fetchAPI((gifts) => this.setState({gifts}))
 	}
 
 	render() {
@@ -62,16 +76,16 @@ class CreateUserFactory extends Component {
 				</div>
 				{!containsUser() &&
 					<div className = "create-user-address-field">
-						{this.props.addressField} for user is
+						{this.props.addressField} for {this.props.type} is
 						<span className = "create-user-address"> {this.props.address !== undefined ? this.props.address : "not set"}</span>
 					</div>
 				}
 				{containsUser() &&
 					<div className = "create-user-address-found">
-						{this.props.address} already exists for user {existingUser().title}.
+						{this.props.address} already exists for {this.props.type} {existingUser().title}.
 					</div>
 				}
-				<Button disabled={containsUser()} onClick={buttonFunc} style={{margin:"10px"}} variant="raised" color="secondary">Create User</Button>
+				<Button disabled={containsUser()} onClick={buttonFunc} style={{margin:"10px"}} variant="raised" color="secondary">Create {this.props.type}</Button>
 			</div>
 		)
 	}
@@ -79,13 +93,28 @@ class CreateUserFactory extends Component {
 
 
 class CreateUser extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {value:UserType.RECIPIENT}
+	}
 	render() {
-
-	    const userType = UserType.RECIPIENT
+          // <RadioGroup
+          //   aria-label="gender"
+          //   name="gender1"
+          //   className={classes.group}
+          //   value={this.state.value}
+          //   onChange={this.handleChange}
+          // >
+          //   <FormControlLabel value="female" control={<Radio />} label="Female" />
+          //   <FormControlLabel value="male" control={<Radio />} label="Male" />
+	    const userType = this.state.value
 	    let userSection
 		switch (userType) {
 			case UserType.RECIPIENT:
 				userSection = <CreateRecipient address={this.props.account}/>
+				break
+			case UserType.MERCHANT:
+				userSection = <CreateMerchant address={this.props.account}/>
 				break
 			default:
 				userSection =  <div/>
@@ -95,7 +124,15 @@ class CreateUser extends Component {
 			<div>
 				<NavBar title={`Create ${userType}`}/>
 				<div className="page-container">
+					<RadioGroup
+						value={this.state.value}
+						onChange={(event) =>this.setState({value:event.target.value})}
+					>
+			            <FormControlLabel value={UserType.RECIPIENT} control={<Radio />} label="Recipient" />
+			            <FormControlLabel value={UserType.MERCHANT} control={<Radio />} label="Merchant" />
+		            </RadioGroup>
 					{userSection}
+
 				</div>
 			</div>
 		)
