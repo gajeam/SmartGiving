@@ -80,6 +80,7 @@ class HomeTemplate extends Component {
         charity={drawerCharity()}
         money={this.props.priceFunc(drawerGifts())}
         type={this.props.userType}
+        showDialog={this.props.showDialog}
       />
     )
 

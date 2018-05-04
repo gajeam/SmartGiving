@@ -9,6 +9,7 @@ import {isObjectEmpty, PriceForItems} from '../components/Helpers'
 import {WeiToEther, DigitsPerEther} from '../style/Formatter'
 import GiftTextFactory from '../components/GiftTextFactory'
 import { FetchCharityData } from '../backend/APIHelper'
+import {StatusDialogMakeDonation, StatusDialogMakeBid} from '../components/StatusDialog'
 
 import {
   Paper,
@@ -72,6 +73,11 @@ class GiftPage extends Component {
         : this.state.donationValue
     const selectDonate = () => {
       this.props.showRequest(true, donationValue(), this.state.charity)
+    }
+
+    const showDialog = (err) => {
+      const dialogFunc = userType === "donor" ? StatusDialogMakeDonation : StatusDialogMakeBid
+      this.props.openDialog(dialogFunc(err))
     }
 
     const shippingSection = (textInfo) => {
@@ -198,6 +204,7 @@ class GiftPage extends Component {
             store={this.props.store}
             charity={this.state.charity}
             type={userType}
+            showDialog = {showDialog}
           />
         </div>
       </div>

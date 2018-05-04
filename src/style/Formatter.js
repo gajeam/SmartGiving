@@ -37,3 +37,7 @@ export const WeiToDollars = (wei) => {
 export const WeiToEther = (wei) => {
 	return (parseFloat(wei / weiPerEther)).toFixed(DigitsPerEther)
 }
+
+export const EtherToWei = (ether) => {
+	return (parseFloat(ether * weiPerEther))
+}

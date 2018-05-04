@@ -11,7 +11,7 @@ import {PriceForItems} from '../components/Helpers'
 
 import {CreateNewGift} from "../backend/APIManager";
 import { FetchCharityData } from '../backend/APIHelper'
-import {StatusDialogKey} from '../components/StatusDialog'
+import {StatusDialogCreateRequest} from '../components/StatusDialog'
 
 
 class CreateRequest extends Component {
@@ -69,12 +69,7 @@ class CreateRequest extends Component {
 				dollars: PriceForItems(items, true),
 			}
 			CreateNewGift(giftJSON, (err) => {
-				this.props.openDialog({
-					[StatusDialogKey.TITLE]: "Successfully made a request",
-					[StatusDialogKey.CONTENT]: "Now that you've made a request, it's time to wait for a donor to fulfill it. Check out the status of your gift on your homepage.",
-					[StatusDialogKey.ERROR]: err,
-					[StatusDialogKey.REDIRECT]: '/home/charity'
-				})
+				this.props.openDialog(StatusDialogCreateRequest(err))
 			})
 		} 
 

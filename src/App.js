@@ -96,7 +96,7 @@ class App extends Component {
 							
 							<Route
 								path="/home/donor"
-								component={() => <DonorHome store={this.props.store} account={this.state.account}/>}
+								component={() => <DonorHome store={this.props.store} account={this.state.account} openDialog={openDialog}/>}
 							/>
 
 							<Route
@@ -106,11 +106,11 @@ class App extends Component {
 
 							<Route
 								path="/home/merchant"
-								component={() => <MerchantHome store={this.props.store} account={this.state.account}/>}
+								component={() => <MerchantHome store={this.props.store} account={this.state.account} openDialog={openDialog}/>}
 							/>
 							<Route
 								path="/charity/:charityID/:userType"
-								component={() => <GiftPage store={this.props.store} />}
+								component={() => <GiftPage store={this.props.store} openDialog={openDialog}/>}
 							/>
 							<Route
 								path="/thanks"
