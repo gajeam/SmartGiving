@@ -93,6 +93,7 @@ export const StatusDialogSelectMerchant = (err) => {
 	return {
 		[StatusDialogKey.TITLE]: "Successfully selected a merchant",
 		[StatusDialogKey.CONTENT]: "The merchant should confirm that they have shipped your gift shortly. Once you receive the gift, make sure to confirm that you received it so you can make more requests.",
+		[StatusDialogKey.REDIRECT]: '/home/charity',
 		[StatusDialogKey.ERROR]: err,
 	}
 }
@@ -102,6 +103,8 @@ export const StatusDialogConfirmShipment = (err) => {
 		[StatusDialogKey.TITLE]: "Successfully confirmed your shipment",
 		[StatusDialogKey.CONTENT]: "The money has been transfered to your account. All that's left is for the recipient to confirm that they received your shipment. Then you'll be able to bid on other gifts.",
 		[StatusDialogKey.ERROR]: err,
+		[StatusDialogKey.REDIRECT]: '/home/merchant'
+
 	}
 }
 
@@ -110,6 +113,8 @@ export const StatusDialogConfirmGiftReceived = (err) => {
 		[StatusDialogKey.TITLE]: "Successfully confirmed gift received",
 		[StatusDialogKey.CONTENT]: "Thank you for confirming you received your gift. You are now welcome to make more gift requests.",
 		[StatusDialogKey.ERROR]: err,
+		[StatusDialogKey.REDIRECT]: '/home/charity'
+
 	}
 }
 
