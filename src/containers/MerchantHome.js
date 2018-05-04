@@ -6,6 +6,7 @@ import {MerchantPreButtons, MerchantActionButtons, MerchantPostButtons} from '..
 import {MerchantFilter} from "../components/GiftFilters"
 import {WeiToEther} from '../style/Formatter'
 import {UserType} from '../components/User'
+import {StatusDialogMakeBid} from '../components/StatusDialog'
 
 class MerchantHome extends Component {
 
@@ -37,7 +38,7 @@ class MerchantHome extends Component {
       return sections
 
     }
-
+    const dialog = (err) => StatusDialogMakeBid(err)
 
     return (
       <HomeTemplate store={this.props.store}
@@ -46,6 +47,8 @@ class MerchantHome extends Component {
                     priceFunc={priceFunc}
                     sectioningFunc={sectioningFunc}
                     userType={userType}
+                    openDialog={this.props.openDialog}
+                    dialog={dialog}
                     account={this.props.account}/>
       )
   }

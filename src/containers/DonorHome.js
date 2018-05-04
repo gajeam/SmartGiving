@@ -9,6 +9,7 @@ import {
 import {DonorFilter} from "../components/GiftFilters"
 import {PriceForItems} from '../components/Helpers'
 import {UserType} from '../components/User'
+import {StatusDialogMakeDonation} from '../components/StatusDialog'
 
 class DonorHome extends Component {
 
@@ -24,6 +25,7 @@ class DonorHome extends Component {
     const userType = UserType.DONOR
     const priceFunc = (gift) => PriceForItems(gift.items)
     const filter = DonorFilter()
+    const dialog = (err) => StatusDialogMakeDonation(err)
 
     const sectioningFunc = (charities) => [{charities}]
 
@@ -33,6 +35,8 @@ class DonorHome extends Component {
                     buttons={buttons}
                     sectioningFunc={sectioningFunc}
                     priceFunc={priceFunc}
+                    openDialog={this.props.openDialog}
+                    dialog={dialog}
                     userType={userType}/>
       )
   }

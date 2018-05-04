@@ -133,10 +133,10 @@ class CharityStatusBar extends Component {
 		          )}
 		        </div>
             {giftStatus === GiftStatus.MERCHANT_BIDDED &&
-              <SelectMerchant account={this.props.account} gift={this.props.gift} charity={this.props.charity}/>
+              <SelectMerchant account={this.props.account} gift={this.props.gift} charity={this.props.charity} openDialog={this.props.openDialog}/>
             }
             {giftStatus === GiftStatus.MERCHANT_SHIPPED &&
-              <ItemReceivedButton charity={this.props.charity}/>
+              <ItemReceivedButton charity={this.props.charity} openDialog={this.props.openDialog}/>
             }
 		      </div>
 

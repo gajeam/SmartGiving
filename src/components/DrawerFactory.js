@@ -37,11 +37,10 @@ class DrawerFactory extends Component {
 				console.log(ethData)
 				blockchainCall(ethData, (error) => {
 					if (error !== undefined) {
-						alert(`Blockchain Error: ${error.message}`)
-						console.log(error)
+						props.showDialog(error)
 					} else {
-						UpdateDatabase(() => {
-							props.history.push('/thanks')
+						UpdateDatabase((err) => {
+							props.showDialog(err)
 						})
 					}
 				})

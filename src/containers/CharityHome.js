@@ -82,7 +82,7 @@ class CharityHome extends Component {
 						</Typography>
 					</div>
 				}
-				<CharityStatusBar charity={this.state.charity} gift={this.state.gift} account={this.props.account}/>
+				<CharityStatusBar charity={this.state.charity} gift={this.state.gift} account={this.props.account} openDialog={this.props.openDialog}/>
 
 
 			  </div>

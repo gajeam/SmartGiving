@@ -74,12 +74,17 @@ class HomeTemplate extends Component {
       if (drawerCharity() === undefined) return {}
       return drawerCharity().gifts[0]
     }
+
+    const showDialog = (err) => {
+      this.props.openDialog(this.props.dialog(err))
+    }
     const drawer = (
       <DrawerFactory
         store={this.props.store}
         charity={drawerCharity()}
         money={this.props.priceFunc(drawerGifts())}
         type={this.props.userType}
+        showDialog={showDialog}
       />
     )
 

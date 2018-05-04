@@ -1,4 +1,4 @@
-import {UnixFromString, DollarsToEther} from '../style/Formatter'
+import {UnixFromString, DollarsToEther, EtherToWei, WeiToEther} from '../style/Formatter'
 
 export const DonationRequest = (charity, money) => {
 	const gift = charity.gifts[0]
@@ -14,7 +14,7 @@ export const BidRequest = (charity, money) => {
 	const gift = charity.gifts[0]
 	return {
 		giftAddress : gift.ethGiftAddr,
-		ether: (money - 10).toString() // subtract ten for safety
+		ether: WeiToEther(EtherToWei(money) - 10).toString() // Subtract ten to stay safe from bidding too high
 	}
 }
 
