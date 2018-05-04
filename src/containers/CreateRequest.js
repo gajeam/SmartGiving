@@ -6,12 +6,12 @@ import NavBar from '../components/NavBar'
 import DescribeGift from '../components/DescribeGift'
 import ItemizeGift from '../components/ItemizeGift'
 import NewGiftSummary from '../components/NewGiftSummary'
-import StatusDialog from '../components/StatusDialog'
 
 import {PriceForItems} from '../components/Helpers'
 
 import {CreateNewGift} from "../backend/APIManager";
 import { FetchCharityData } from '../backend/APIHelper'
+import {StatusDialogKey} from '../components/StatusDialog'
 
 
 class CreateRequest extends Component {
@@ -20,8 +20,7 @@ class CreateRequest extends Component {
 		super(props)
 		// By default, a gift expires a year from today, UTC
 		const defaultExpiration = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
-		this.state = {		dialogOpen: false,
-							gift:{tags:[],
+		this.state = {		gift:{tags:[],
 							title:"",
 							description:"",
 							expiration: defaultExpiration,
@@ -70,7 +69,12 @@ class CreateRequest extends Component {
 				dollars: PriceForItems(items, true),
 			}
 			CreateNewGift(giftJSON, (err) => {
-				this.setState({dialogOpen:true, dialogError:err})
+				this.props.openDialog({
+					[StatusDialogKey.TITLE]: "Successfully made a request",
+					[StatusDialogKey.CONTENT]: "Now that you've made a request, it's time to wait for a donor to fulfill it. Check out the status of your gift on your homepage.",
+					[StatusDialogKey.ERROR]: err,
+					[StatusDialogKey.REDIRECT]: '/home/charity'
+				})
 			})
 		} 
 
@@ -84,8 +88,8 @@ class CreateRequest extends Component {
 		}
 
 		const displayData = {
-			"Basic Information" : <DescribeGift store={this.props.store} onUpdate = {updateGift} gift={this.state.gift}/>,
-			"List of Goods" : <ItemizeGift store={this.props.store} onUpdate = {updateGift} gift={this.state.gift}/>,
+			"Basic Information" : <DescribeGift onUpdate = {updateGift} gift={this.state.gift}/>,
+			"List of Goods" : <ItemizeGift onUpdate = {updateGift} gift={this.state.gift}/>,
 			"Let's do it": <NewGiftSummary gift={this.state.gift} charity={this.state.charity}/>
 		}
 		return (
@@ -94,15 +98,6 @@ class CreateRequest extends Component {
 				<div className="page-container">
 					<TabBar displayData={displayData} onSubmit = {handleSubmit} nextButtonDisabled = {nextButtonDisabled}/>
 				</div>
-				<StatusDialog
-					open={this.state.dialogOpen}
-					title={"Successfully made a request"}
-					content={"Now that you've made a request, it's time to wait for a donor to fulfill it. Check out the status of your gift on your homepage."}
-					error={this.state.dialogError}
-					onClose={() => {
-						this.setState({dialogOpen:false})
-						this.props.history.push('/home/charity')
-					}}/>
 			</div>
 		)
 	}
@@ -110,3 +105,12 @@ class CreateRequest extends Component {
 
 export default withRouter(CreateRequest)
 
+				// <StatusDialog
+				// 	open={this.state.dialogOpen}
+				// 	title={"Successfully made a request"}
+				// 	content={"Now that you've made a request, it's time to wait for a donor to fulfill it. Check out the status of your gift on your homepage."}
+				// 	error={this.state.dialogError}
+				// 	onClose={() => {
+				// 		this.setState({dialogOpen:false})
+				// 		this.props.history.push('/home/charity')
+				// 	}}/>

@@ -21,8 +21,9 @@ import GetAllStats from './ethereum/components/GetAllStats'
 import GetActiveGifts from "./containers/GetActiveGifts"
 import Team from './containers/Team'
 import CreateUser from './containers/CreateUser'
-import {PollUserAddress, CancelPollUserAddress} from './components/User'
+import StatusDialogContainer, {StatusDialogKey} from './components/StatusDialog'
 
+import {PollUserAddress, CancelPollUserAddress} from './components/User'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
 const theme = createMuiTheme({
@@ -49,7 +50,7 @@ const theme = createMuiTheme({
 class App extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {}
+		this.state = {dialogObject:{}, dialogOpen:false}
 	}
 	componentDidMount() {
 		PollUserAddress((account) => {
@@ -60,6 +61,9 @@ class App extends Component {
 		CancelPollUserAddress()
 	}
 	render() {
+		const openDialog = (dialogObject) => {
+			this.setState({dialogObject, dialogOpen:true})
+		}		
 		return (
 		  <MuiThemeProvider theme={theme}>
 			<ParallaxProvider
@@ -71,6 +75,15 @@ class App extends Component {
 			>
 				<HashRouter>
 					<div className="main">
+						<StatusDialogContainer
+							open={this.state.dialogOpen}
+							title={this.state.dialogObject[StatusDialogKey.TITLE]}
+							content={this.state.dialogObject[StatusDialogKey.CONTENT]}
+							error={this.state.dialogObject[StatusDialogKey.ERROR]}
+							redirect={this.state.dialogObject[StatusDialogKey.REDIRECT]}
+							onClose={() => {
+								this.setState({dialogOpen:false})
+						}}>
 						<Switch>
 							<Route
 								exact
@@ -105,7 +118,7 @@ class App extends Component {
 							/>
 							<Route
 								path="/createrequest"
-								component={() => <CreateRequest store={this.props.store} account={this.state.account}/>}
+								component={() => <CreateRequest account={this.state.account} openDialog={openDialog}/>}
 							/>
 							<Route
 								path="/getallstats"
@@ -121,6 +134,8 @@ class App extends Component {
 							/>
 							<Route component={Whoops404} />
 						</Switch>
+						</StatusDialogContainer>
+
 					</div>
 				</HashRouter>
 			</ParallaxProvider>
