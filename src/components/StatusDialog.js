@@ -33,9 +33,9 @@ class StatusDialog extends Component {
 }
 
 StatusDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  open: PropTypes.bool,
+  title: PropTypes.string,
+  content: PropTypes.string,
   error: PropTypes.any
 }
 
