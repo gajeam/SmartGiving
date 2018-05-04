@@ -50,7 +50,7 @@ class CharityHome extends Component {
 		  <NavBar/>
 		  <div className='charity-status-container'>
 			{/*top half of the page*/}
-			  <CharityHomeTop charity={this.state.charity}/>
+			  <CharityHomeTop charity={this.state.charity} openDialog={this.props.openDialog}/>
 
 			{/*bottom half of the page*/}
 			  <div className='charity-status-requestName'>					  	

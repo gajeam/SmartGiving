@@ -47,8 +47,4 @@ CharityCard.propTypes = {
 	postButtons: PropTypes.array.isRequired,
 }
 
-CharityCard.defaultProps = {
-	// TODO @Gabe get some default images for here
-}
-
 export default CharityCard;

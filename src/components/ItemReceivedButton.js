@@ -5,19 +5,20 @@ import {ConfirmRequest} from '../backend/EthereumRequestManager'
 import {UpdateDatabase} from '../backend/APIManager'
 
 import {Button} from 'material-ui'
-import {StatusDialogConfirmGiftReceived} from '../components/StatusDialog'
+import {StatusDialogConfirmGiftReceived, StatusDialogWaiting} from '../components/StatusDialog'
 
 class ItemReceivedButton extends Component {
 
   render() {
-    const showDialog = (err) => {
+    const showFinishedDialog = (err) => {
       this.props.openDialog(StatusDialogConfirmGiftReceived(err))
     }
     const itemReceived = () => {
+      this.props.openDialog(StatusDialogWaiting())
       const charity = this.props.charity
       ItemReceived(ConfirmRequest(charity), (err) => {
-        if (err !== undefined) showDialog(err)
-        else UpdateDatabase((err) => showDialog(err))
+        if (err !== undefined) showFinishedDialog(err)
+        else UpdateDatabase((err) => showFinishedDialog(err))
      })
     }
 

@@ -15,7 +15,6 @@ import CharityHome from './containers/CharityHome'
 import DonorHome from './containers/DonorHome'
 import MerchantHome from './containers/MerchantHome'
 import CreateRequest from './containers/CreateRequest'
-import ThankYou from './containers/ThankYou'
 import GiftPage from './containers/GiftPage'
 import GetAllStats from './ethereum/components/GetAllStats'
 import GetActiveGifts from "./containers/GetActiveGifts"
@@ -63,7 +62,9 @@ class App extends Component {
 	render() {
 		const openDialog = (dialogObject) => {
 			this.setState({dialogObject, dialogOpen:true})
-		}		
+		}
+		const dialog = this.state.dialogObject
+		
 		return (
 		  <MuiThemeProvider theme={theme}>
 			<ParallaxProvider
@@ -77,12 +78,14 @@ class App extends Component {
 					<div className="main">
 						<StatusDialogContainer
 							open={this.state.dialogOpen}
-							title={this.state.dialogObject[StatusDialogKey.TITLE]}
-							content={this.state.dialogObject[StatusDialogKey.CONTENT]}
-							error={this.state.dialogObject[StatusDialogKey.ERROR]}
-							redirect={this.state.dialogObject[StatusDialogKey.REDIRECT]}
+							title={dialog[StatusDialogKey.TITLE]}
+							content={dialog[StatusDialogKey.CONTENT]}
+							error={dialog[StatusDialogKey.ERROR]}
+							redirect={dialog[StatusDialogKey.REDIRECT]}
+							hidebuttons={dialog[StatusDialogKey.HIDE_BUTTONS]}
 							onClose={() => {
-								this.setState({dialogOpen:false})
+								if (dialog[StatusDialogKey.HIDE_BUTTONS] !== true)
+									this.setState({dialogOpen:false})
 						}}>
 						<Switch>
 							<Route
@@ -111,10 +114,6 @@ class App extends Component {
 							<Route
 								path="/charity/:charityID/:userType"
 								component={() => <GiftPage store={this.props.store} openDialog={openDialog}/>}
-							/>
-							<Route
-								path="/thanks"
-								component={() => <ThankYou store={this.props.store} />}
 							/>
 							<Route
 								path="/createrequest"

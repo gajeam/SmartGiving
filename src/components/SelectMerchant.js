@@ -6,7 +6,7 @@ import '../style/SelectMerchant.css'
 import {kStyleElevation, kStylePaper} from '../style/styleConstants'
 import {WeiToDollars} from '../style/Formatter'
 import {containsObject} from '../components/Helpers'
-import {StatusDialogSelectMerchant} from '../components/StatusDialog'
+import {StatusDialogSelectMerchant, StatusDialogWaiting} from '../components/StatusDialog'
 
 import {ChooseMerchant} from '../ethereum/components/ChooseMerchant'
 import {ChooseMerchantRequest} from '../backend/EthereumRequestManager'
@@ -29,7 +29,6 @@ class SelectMerchant extends Component {
     
     FetchMerchants(this.props.gift, (merchants) => {
       UpdateDatabase(() => {
-        // TODO @Gabe show thanks or whatever
         this.setState({merchants})
       })
     })
@@ -73,12 +72,13 @@ class SelectMerchant extends Component {
     }
 
     const onSelect = (merchant) => () => {
-      const dialog = (err) => this.props.openDialog(StatusDialogSelectMerchant(err))
+      const finishedDialog = (err) => this.props.openDialog(StatusDialogSelectMerchant(err))
       const blockchainCompletion = (error) => {
-        if (error !== undefined) dialog(error)
-        else UpdateDatabase((err) => dialog(err))
+        if (error !== undefined) finishedDialog(error)
+        else UpdateDatabase((err) => finishedDialog(err))
       }
       const ethData = ChooseMerchantRequest(this.props.gift, merchant.ethMerchantAddr)
+      this.props.openDialog(StatusDialogWaiting())
       ChooseMerchant(ethData, blockchainCompletion)
     }
 
