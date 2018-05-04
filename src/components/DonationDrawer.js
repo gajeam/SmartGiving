@@ -64,7 +64,6 @@ DonationDrawer.defaultProps = {
 	charity: {
 		title: "SAMPLE CHARITY"
 	}
-	// TODO @Gabe get some default images for here
 }
 export default DonationDrawer;
 

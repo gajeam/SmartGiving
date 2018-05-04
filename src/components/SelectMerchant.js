@@ -29,7 +29,6 @@ class SelectMerchant extends Component {
     
     FetchMerchants(this.props.gift, (merchants) => {
       UpdateDatabase(() => {
-        // TODO @Gabe show thanks or whatever
         this.setState({merchants})
       })
     })

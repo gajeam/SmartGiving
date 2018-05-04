@@ -15,7 +15,6 @@ import CharityHome from './containers/CharityHome'
 import DonorHome from './containers/DonorHome'
 import MerchantHome from './containers/MerchantHome'
 import CreateRequest from './containers/CreateRequest'
-import ThankYou from './containers/ThankYou'
 import GiftPage from './containers/GiftPage'
 import GetAllStats from './ethereum/components/GetAllStats'
 import GetActiveGifts from "./containers/GetActiveGifts"
@@ -115,10 +114,6 @@ class App extends Component {
 							<Route
 								path="/charity/:charityID/:userType"
 								component={() => <GiftPage store={this.props.store} openDialog={openDialog}/>}
-							/>
-							<Route
-								path="/thanks"
-								component={() => <ThankYou store={this.props.store} />}
 							/>
 							<Route
 								path="/createrequest"

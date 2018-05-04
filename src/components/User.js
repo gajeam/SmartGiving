@@ -9,7 +9,7 @@ export const UserType = {
 
 // Always be polling for an update in Ethereum address
 
-// TODO: @Gabe be good about checking to see if this is undefined.
+// TODO @Gabe be good about checking to see if this is undefined.
 // We may need some kind of MetaMask error page
 let currentTimer = undefined
 let currentAccount = undefined
