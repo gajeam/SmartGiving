@@ -1,6 +1,6 @@
 import { GetAllOpenGifts, GetAllMerchants } from "../backend/APIManager"
 
-export const FetchGift = (charityID, completion) => {
+export const FetchCharityData = (charityID, completion) => {
     const dbCompletion = (data, err) => {
       if (err) {
         alert(`${err}`)
@@ -14,7 +14,7 @@ export const FetchGift = (charityID, completion) => {
         return completion()
       } else if (charity.gifts === undefined || charity.gifts.length === 0) {
           console.warn(`Cannot find gifts for charity with id ${charityID}`)
-          return completion()
+          return completion(charity)
         }
       else {
         const gift = charity.gifts[0]

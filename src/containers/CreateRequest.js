@@ -9,6 +9,7 @@ import NewGiftSummary from '../components/NewGiftSummary'
 import {PriceForItems} from '../components/Helpers'
 
 import {CreateNewGift} from "../backend/APIManager";
+import { FetchCharityData } from '../backend/APIHelper'
 
 
 class CreateRequest extends Component {
@@ -25,10 +26,27 @@ class CreateRequest extends Component {
 							challenge: "",
 							items:[]}}
 	}
+	componentDidMount() {
+		if (this.props.account !== undefined) {
+		    FetchCharityData(this.props.account, (charity) => this.setState({charity}))
+		}
+	  }
 
 	render() {
 		const account = this.props.account
-		console.log(`Account: ${account}`)
+
+		const nextButtonDisabled = (tab) => {
+			const gift = this.state.gift
+			switch (tab) {
+				case 0:
+					return gift.title.length === 0 || gift.description.length ===0
+				case 1:
+					return gift.items.length === 0
+				default:
+					return false
+			}
+		}
+
 		const handleSubmit = () => {
 			const items = this.state.gift.items.map((itemObj, i) => {
 				return {
@@ -39,12 +57,17 @@ class CreateRequest extends Component {
 			})
 			const giftJSON = {
 				items,
-				title: this.state.gift.description,
+				title: this.state.gift.title,
+				summary: this.state.gift.description,
+				tags: this.state.gift.tags,
+				background: this.state.gift.background,
+				challenge: this.state.gift.challenge,
 				ethRecipientAddr: account,
 				expiry: this.state.gift.expiration,
 				dollars: PriceForItems(items, true),
-
 			}
+
+
 			CreateNewGift(giftJSON, (err) => {
 				if (err !== undefined) {
 					alert(err)
@@ -66,13 +89,13 @@ class CreateRequest extends Component {
 		const displayData = {
 			"Basic Information" : <DescribeGift store={this.props.store} onUpdate = {updateGift} gift={this.state.gift}/>,
 			"List of Goods" : <ItemizeGift store={this.props.store} onUpdate = {updateGift} gift={this.state.gift}/>,
-			"Let's do it": <NewGiftSummary gift={this.state.gift}/>
+			"Let's do it": <NewGiftSummary gift={this.state.gift} charity={this.state.charity}/>
 		}
 		return (
 			<div>
 				<NavBar title="New Request"/>
 				<div className="page-container">
-					<TabBar displayData={displayData} onSubmit = {handleSubmit}/>
+					<TabBar displayData={displayData} onSubmit = {handleSubmit} nextButtonDisabled = {nextButtonDisabled}/>
 				</div>
 			</div>
 		)

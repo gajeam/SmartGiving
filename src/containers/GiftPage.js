@@ -8,7 +8,7 @@ import { ImageLibrary } from "../components/ImageLibrary"
 import {isObjectEmpty, PriceForItems} from '../components/Helpers'
 import {WeiToEther, DigitsPerEther} from '../style/Formatter'
 import GiftTextFactory from '../components/GiftTextFactory'
-import { FetchGift } from '../backend/APIHelper'
+import { FetchCharityData } from '../backend/APIHelper'
 
 import {
   Paper,
@@ -46,7 +46,7 @@ class GiftPage extends Component {
     }
     // Otherwise, load it from the database
     const charityID = this.props.match.params.charityID
-    FetchGift(charityID, (charity, gift) => this.setState({charity, gift}))
+    FetchCharityData(charityID, (charity, gift) => this.setState({charity, gift}))
   }
 
   defaultCost(useDollars, gift) {

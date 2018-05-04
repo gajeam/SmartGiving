@@ -28,7 +28,7 @@ class TabBar extends Component {
 				)
 			}
 			return (
-				<Button onClick={moveTabBy(1)} style={{margin:"10px"}} variant="raised">Next</Button>
+				<Button onClick={moveTabBy(1)} disabled={this.props.nextButtonDisabled(tab)} style={{margin:"10px"}} variant="raised">Next</Button>
 			) 
 		}
 		return (
