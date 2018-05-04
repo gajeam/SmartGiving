@@ -101,7 +101,7 @@ class App extends Component {
 
 							<Route
 								path="/home/charity"
-								component={() => <CharityHome store={this.props.store} account={this.state.account}/>}
+								component={() => <CharityHome store={this.props.store} account={this.state.account} openDialog={openDialog}/>}
 							/>
 
 							<Route

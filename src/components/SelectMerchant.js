@@ -6,6 +6,7 @@ import '../style/SelectMerchant.css'
 import {kStyleElevation, kStylePaper} from '../style/styleConstants'
 import {WeiToDollars} from '../style/Formatter'
 import {containsObject} from '../components/Helpers'
+import {StatusDialogSelectMerchant} from '../components/StatusDialog'
 
 import {ChooseMerchant} from '../ethereum/components/ChooseMerchant'
 import {ChooseMerchantRequest} from '../backend/EthereumRequestManager'
@@ -72,10 +73,10 @@ class SelectMerchant extends Component {
     }
 
     const onSelect = (merchant) => () => {
+      const dialog = (err) => this.props.openDialog(StatusDialogSelectMerchant(err))
       const blockchainCompletion = (error) => {
-
-        if (error) console.log(error)
-        else       UpdateDatabase(() => alert("You've selected a merchant, maybe."))
+        if (error !== undefined) dialog(error)
+        else UpdateDatabase((err) => dialog(err))
       }
       const ethData = ChooseMerchantRequest(this.props.gift, merchant.ethMerchantAddr)
       ChooseMerchant(ethData, blockchainCompletion)

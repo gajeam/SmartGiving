@@ -87,3 +87,12 @@ export const StatusDialogMakeBid = (err) => {
 		[StatusDialogKey.REDIRECT]: '/home/merchant'
 	}
 }
+
+export const StatusDialogSelectMerchant = (err) => {
+	return {
+		[StatusDialogKey.TITLE]: "Successfully selected a merchant",
+		[StatusDialogKey.CONTENT]: "The merchant should confirm that they have shipped your gift shortly. Once you receive the gift, make sure to confirm that you received it so you can make more requests.",
+		[StatusDialogKey.ERROR]: err,
+		[StatusDialogKey.REDIRECT]: '/home/charity'
+	}
+}
