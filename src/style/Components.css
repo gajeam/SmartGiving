@@ -48,7 +48,7 @@ h1, h2, h3{
 }
 
 .donate-avatar-container {
-	margin:15px;
+	margin:12px;
 	display:flex;
 	justify-content: center;
 	align-items: center;
@@ -142,7 +142,7 @@ h1, h2, h3{
 	color:#666666;
 }
 .charity-card-action{
-	text-transform: uppercase;
+	text-transform: capitalize;
 }
 
 .charity-card-media {
@@ -270,8 +270,7 @@ h1, h2, h3{
 }
 
 .describe-gift-textfield-tags {
-	min-width:200px;
-	width:30%;
+	width:45%;
 	margin-right: 200px;
 }
 

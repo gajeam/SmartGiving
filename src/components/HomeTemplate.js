@@ -64,10 +64,6 @@ class HomeTemplate extends Component {
       return s
     })
 
-
-
-    console.log(recipients)
-
     const drawerCharity = () => {
       if (isObjectEmpty(storeState.updateDrawer.selectedCharity)) {
         return undefined
@@ -78,12 +74,15 @@ class HomeTemplate extends Component {
       if (drawerCharity() === undefined) return {}
       return drawerCharity().gifts[0]
     }
+
     const drawer = (
       <DrawerFactory
         store={this.props.store}
         charity={drawerCharity()}
         money={this.props.priceFunc(drawerGifts())}
         type={this.props.userType}
+        openDialog={this.props.openDialog}
+        dialog={this.props.dialog}
       />
     )
 

@@ -8,7 +8,8 @@ import { ImageLibrary } from "../components/ImageLibrary"
 import {isObjectEmpty, PriceForItems} from '../components/Helpers'
 import {WeiToEther, DigitsPerEther} from '../style/Formatter'
 import GiftTextFactory from '../components/GiftTextFactory'
-import { FetchGift } from '../backend/APIHelper'
+import { FetchCharityData } from '../backend/APIHelper'
+import {StatusDialogMakeDonation, StatusDialogMakeBid} from '../components/StatusDialog'
 
 import {
   Paper,
@@ -46,7 +47,7 @@ class GiftPage extends Component {
     }
     // Otherwise, load it from the database
     const charityID = this.props.match.params.charityID
-    FetchGift(charityID, (charity, gift) => this.setState({charity, gift}))
+    FetchCharityData(charityID, (charity, gift) => this.setState({charity, gift}))
   }
 
   defaultCost(useDollars, gift) {
@@ -73,6 +74,8 @@ class GiftPage extends Component {
     const selectDonate = () => {
       this.props.showRequest(true, donationValue(), this.state.charity)
     }
+
+    const dialog = (userType === "donor") ? StatusDialogMakeDonation : StatusDialogMakeBid
 
     const shippingSection = (textInfo) => {
       if (textInfo.location === undefined) return
@@ -198,6 +201,8 @@ class GiftPage extends Component {
             store={this.props.store}
             charity={this.state.charity}
             type={userType}
+            openDialog = {this.props.openDialog}
+            dialog = {dialog}
           />
         </div>
       </div>

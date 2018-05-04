@@ -9,7 +9,7 @@ import { withStyles } from 'material-ui/styles';
 import Badge from 'material-ui/Badge';
 import Typography from 'material-ui/Typography';
 
-import {FetchGift} from '../backend/APIHelper'
+import {FetchCharityData} from '../backend/APIHelper'
 
 
 
@@ -33,7 +33,7 @@ class CharityHome extends Component {
 	componentDidMount() {
 		if (this.props.account === undefined)
 			return
-		FetchGift(this.props.account, (charity, gift) => {
+		FetchCharityData(this.props.account, (charity, gift) => {
 			this.setState({charity, gift})	
 		} )
 	}
@@ -50,7 +50,7 @@ class CharityHome extends Component {
 		  <NavBar/>
 		  <div className='charity-status-container'>
 			{/*top half of the page*/}
-			  <CharityHomeTop charity={this.state.charity}/>
+			  <CharityHomeTop charity={this.state.charity} openDialog={this.props.openDialog}/>
 
 			{/*bottom half of the page*/}
 			  <div className='charity-status-requestName'>					  	
@@ -65,7 +65,7 @@ class CharityHome extends Component {
 	      		{this.state.gift !== undefined &&
 	      			<div>
 					    <Typography variant="headline" gutterBottom alignleft='true' paragraph>
-						  Status for Request "March Supplies for Children's Art Project"
+						  Status for request <span className = "charity-card-action">"{this.state.gift.title}"</span>
 						</Typography>
 						<Typography variant="subheading" alignleft='true' paragraph>
 						  Click on each status to see more information
@@ -82,7 +82,7 @@ class CharityHome extends Component {
 						</Typography>
 					</div>
 				}
-				<CharityStatusBar charity={this.state.charity} gift={this.state.gift} account={this.props.account}/>
+				<CharityStatusBar charity={this.state.charity} gift={this.state.gift} account={this.props.account} openDialog={this.props.openDialog}/>
 
 
 			  </div>

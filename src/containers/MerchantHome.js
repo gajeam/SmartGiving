@@ -3,9 +3,10 @@ import React, { Component } from "react"
 import HomeTemplate from "../components/HomeTemplate"
 
 import {MerchantPreButtons, MerchantActionButtons, MerchantPostButtons} from '../components/CardComponents'
-import {HomepageFilter} from "../components/GiftFilters"
+import {MerchantFilter} from "../components/GiftFilters"
 import {WeiToEther} from '../style/Formatter'
 import {UserType} from '../components/User'
+import {StatusDialogMakeBid} from '../components/StatusDialog'
 
 class MerchantHome extends Component {
 
@@ -19,7 +20,7 @@ class MerchantHome extends Component {
 
     const userType = UserType.MERCHANT
     const priceFunc = (gift) => WeiToEther(gift.donorDonationAmt)
-    const filter = HomepageFilter(true)
+    const filter = MerchantFilter(this.props.account)
     const sectioningFunc = (recipients) => {
       const bidFilter = (fulfilled) => (charity) => {
         const bids = charity.gifts[0].bids
@@ -37,7 +38,7 @@ class MerchantHome extends Component {
       return sections
 
     }
-
+    const dialog = (err) => StatusDialogMakeBid(err)
 
     return (
       <HomeTemplate store={this.props.store}
@@ -46,6 +47,8 @@ class MerchantHome extends Component {
                     priceFunc={priceFunc}
                     sectioningFunc={sectioningFunc}
                     userType={userType}
+                    openDialog={this.props.openDialog}
+                    dialog={dialog}
                     account={this.props.account}/>
       )
   }

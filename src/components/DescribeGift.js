@@ -50,11 +50,11 @@ class DescribeGift extends Component {
 		<div>
 			<div className = "describe-gift-section">
 				<span className = "describe-gift-label">Title </span>
-				<TextField value={this.state.gift.title} onChange={updateSection("title")} className = "describe-gift-textfield" placeholder = 'In a couple words, what is this for? E.g, "School Supplies"'/>
+				<TextField value={this.state.gift.title} required={true} onChange={updateSection("title")} className = "describe-gift-textfield" placeholder = 'In a couple words, what is this for? E.g, "School Supplies"'/>
 			</div>
 			<div className = "describe-gift-section">
 				<span className = "describe-gift-label">Summary </span>
-				<TextField value={this.state.gift.description} onChange={updateSection("description")} className = "describe-gift-textfield" multiline rows = "2" rowsMax= "15" placeholder = "Briefly state the purpose of this request"/>
+				<TextField value={this.state.gift.description} required={true} onChange={updateSection("description")} className = "describe-gift-textfield" multiline rows = "2" rowsMax= "15" placeholder = "Briefly state the purpose of this request"/>
 			</div>
 			<div className = "describe-gift-section">
 				<span className = "describe-gift-label">Background </span>
@@ -78,7 +78,7 @@ class DescribeGift extends Component {
 			<div className = "describe-gift-section">
 				<span className = "describe-gift-label">Tags </span>
 				<TextField onChange={updateTagInput()} value={this.state.tagInput} className = "describe-gift-textfield-tags" placeholder = "Add tags to make your request more searchable" />
-				<Button onClick={appendTag} className="describe-gift-add-tag" mini variant="fab" color="primary" aria-label="add"><AddIcon /></Button>
+				<Button onClick={appendTag} style={{marginLeft:"20px"}} className="describe-gift-add-tag" mini variant="fab" color="primary" aria-label="add"><AddIcon /></Button>
 			</div>
 			<div className = "describe-gift-section">
 				{this.state.gift.tags.map((tag, i) => {

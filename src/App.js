@@ -15,14 +15,14 @@ import CharityHome from './containers/CharityHome'
 import DonorHome from './containers/DonorHome'
 import MerchantHome from './containers/MerchantHome'
 import CreateRequest from './containers/CreateRequest'
-import ThankYou from './containers/ThankYou'
 import GiftPage from './containers/GiftPage'
 import GetAllStats from './ethereum/components/GetAllStats'
 import GetActiveGifts from "./containers/GetActiveGifts"
 import Team from './containers/Team'
 import CreateUser from './containers/CreateUser'
-import {PollUserAddress, CancelPollUserAddress} from './components/User'
+import StatusDialogContainer, {StatusDialogKey} from './components/StatusDialog'
 
+import {PollUserAddress, CancelPollUserAddress} from './components/User'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
 const theme = createMuiTheme({
@@ -49,7 +49,7 @@ const theme = createMuiTheme({
 class App extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {}
+		this.state = {dialogObject:{}, dialogOpen:false}
 	}
 	componentDidMount() {
 		PollUserAddress((account) => {
@@ -60,6 +60,11 @@ class App extends Component {
 		CancelPollUserAddress()
 	}
 	render() {
+		const openDialog = (dialogObject) => {
+			this.setState({dialogObject, dialogOpen:true})
+		}
+		const dialog = this.state.dialogObject
+		
 		return (
 		  <MuiThemeProvider theme={theme}>
 			<ParallaxProvider
@@ -71,6 +76,17 @@ class App extends Component {
 			>
 				<HashRouter>
 					<div className="main">
+						<StatusDialogContainer
+							open={this.state.dialogOpen}
+							title={dialog[StatusDialogKey.TITLE]}
+							content={dialog[StatusDialogKey.CONTENT]}
+							error={dialog[StatusDialogKey.ERROR]}
+							redirect={dialog[StatusDialogKey.REDIRECT]}
+							hidebuttons={dialog[StatusDialogKey.HIDE_BUTTONS]}
+							onClose={() => {
+								if (dialog[StatusDialogKey.HIDE_BUTTONS] !== true)
+									this.setState({dialogOpen:false})
+						}}>
 						<Switch>
 							<Route
 								exact
@@ -83,29 +99,25 @@ class App extends Component {
 							
 							<Route
 								path="/home/donor"
-								component={() => <DonorHome store={this.props.store} account={this.state.account}/>}
+								component={() => <DonorHome store={this.props.store} account={this.state.account} openDialog={openDialog}/>}
 							/>
 
 							<Route
 								path="/home/charity"
-								component={() => <CharityHome store={this.props.store} account={this.state.account}/>}
+								component={() => <CharityHome store={this.props.store} account={this.state.account} openDialog={openDialog}/>}
 							/>
 
 							<Route
 								path="/home/merchant"
-								component={() => <MerchantHome store={this.props.store} account={this.state.account}/>}
+								component={() => <MerchantHome store={this.props.store} account={this.state.account} openDialog={openDialog}/>}
 							/>
 							<Route
 								path="/charity/:charityID/:userType"
-								component={() => <GiftPage store={this.props.store} />}
-							/>
-							<Route
-								path="/thanks"
-								component={() => <ThankYou store={this.props.store} />}
+								component={() => <GiftPage store={this.props.store} openDialog={openDialog}/>}
 							/>
 							<Route
 								path="/createrequest"
-								component={() => <CreateRequest store={this.props.store} account={this.state.account}/>}
+								component={() => <CreateRequest account={this.state.account} openDialog={openDialog}/>}
 							/>
 							<Route
 								path="/getallstats"
@@ -121,6 +133,8 @@ class App extends Component {
 							/>
 							<Route component={Whoops404} />
 						</Switch>
+						</StatusDialogContainer>
+
 					</div>
 				</HashRouter>
 			</ParallaxProvider>
