@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
+import Avatar from 'material-ui/Avatar';
+import { ImageLibrary } from "../components/ImageLibrary"
 
 import {PriceForItems} from '../components/Helpers'
-import UserAvatar from './UserAvatar';
 import {DollarsToEther} from '../style/Formatter'
 
 class DonationDrawer extends Component {
@@ -14,15 +15,19 @@ class DonationDrawer extends Component {
 		const request = this.props.charity.gifts !== undefined ? this.props.charity.gifts[0] : {}
 		const charity = this.props.charity
 		const donationValue = this.props.donationValue === undefined ? PriceForItems(request.items) : this.props.donationValue
+
+
 		return (
 		<Drawer anchor="bottom" open={this.props.data.open} onClose={this.props.data.onClose}>
 			<div className="drawer-container">
 			<h1 className = "drawer-title">Confirm Donation</h1>
 				<div className="donate-avatar-container">
 					<div className = "donate-avatar-container">
-						<UserAvatar displayName="Donor" />
-						<div className = "donate-arrow">&#8680;</div>
-						<UserAvatar displayName="Recipient" />
+				      <Avatar
+				        alt={this.props.charity.title}
+				        src={ImageLibrary(this.props.charity.image)}
+				        style={{width:100, height:100}}
+				     />
 					</div>
 				</div>
 				<div className = "drawer-description donate-pre-description">
