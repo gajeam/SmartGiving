@@ -13,7 +13,7 @@ class StatusDialog extends Component {
 	render() {
 		return (
 			<Dialog
-				open={this.props.open}
+				open={this.props.open !== undefined && this.props.open}
 				onClose={this.props.onClose}
 		        >
                 <DialogTitle id="alert-dialog-title">{this.props.error === undefined ? this.props.title : "Error"}</DialogTitle>

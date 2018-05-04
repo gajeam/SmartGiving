@@ -6,6 +6,8 @@ import NavBar from '../components/NavBar'
 import DescribeGift from '../components/DescribeGift'
 import ItemizeGift from '../components/ItemizeGift'
 import NewGiftSummary from '../components/NewGiftSummary'
+import StatusDialog from '../components/StatusDialog'
+
 import {PriceForItems} from '../components/Helpers'
 
 import {CreateNewGift} from "../backend/APIManager";
@@ -18,7 +20,8 @@ class CreateRequest extends Component {
 		super(props)
 		// By default, a gift expires a year from today, UTC
 		const defaultExpiration = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
-		this.state = {gift:{tags:[],
+		this.state = {		dialogOpen: false,
+							gift:{tags:[],
 							title:"",
 							description:"",
 							expiration: defaultExpiration,
@@ -66,14 +69,8 @@ class CreateRequest extends Component {
 				expiry: this.state.gift.expiration,
 				dollars: PriceForItems(items, true),
 			}
-
-
 			CreateNewGift(giftJSON, (err) => {
-				if (err !== undefined) {
-					alert(err)
-				} else {
-					this.props.history.push('/thanks')
-				}
+				this.setState({dialogOpen:true, dialogError:err})
 			})
 		} 
 
@@ -97,6 +94,15 @@ class CreateRequest extends Component {
 				<div className="page-container">
 					<TabBar displayData={displayData} onSubmit = {handleSubmit} nextButtonDisabled = {nextButtonDisabled}/>
 				</div>
+				<StatusDialog
+					open={this.state.dialogOpen}
+					title={"Successfully made a request"}
+					content={"Now that you've made a request, it's time to wait for a donor to fulfill it. Check out the status of your gift on your homepage."}
+					error={this.state.dialogError}
+					onClose={() => {
+						this.setState({dialogOpen:false})
+						this.props.history.push('/home/charity')
+					}}/>
 			</div>
 		)
 	}
