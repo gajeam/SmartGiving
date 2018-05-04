@@ -9,7 +9,7 @@ import { withStyles } from 'material-ui/styles';
 import Badge from 'material-ui/Badge';
 import Typography from 'material-ui/Typography';
 
-import {FetchGift} from '../backend/APIHelper'
+import {FetchCharityData} from '../backend/APIHelper'
 
 
 
@@ -33,7 +33,7 @@ class CharityHome extends Component {
 	componentDidMount() {
 		if (this.props.account === undefined)
 			return
-		FetchGift(this.props.account, (charity, gift) => {
+		FetchCharityData(this.props.account, (charity, gift) => {
 			this.setState({charity, gift})	
 		} )
 	}

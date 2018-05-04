@@ -15,7 +15,7 @@ class NewGiftSummary extends Component {
 				</div>
 			)
 		}
-
+		const shippingAddress = this.props.charity === undefined ? '...' : this.props.charity.location
 		const priceDollars = PriceForItems(this.props.gift.items, true)
 		return (
 			<div className = "gift-summary-container">
@@ -23,7 +23,7 @@ class NewGiftSummary extends Component {
 				{summarySection("Gift title", this.props.gift.title)}
 				{summarySection("Gift description", this.props.gift.description)}
 				{summarySection("Requested funds", `$${priceDollars} USD (${DollarsToEther(priceDollars)} ETH)`)}
-				{summarySection("Shipping address", "I'll add this back later!"/*this.props.user.location*/)}
+				{summarySection("Shipping address", shippingAddress)}
 		   </div>
 	   )
 	}
