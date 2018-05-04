@@ -65,7 +65,7 @@ class CharityHome extends Component {
 	      		{this.state.gift !== undefined &&
 	      			<div>
 					    <Typography variant="headline" gutterBottom alignleft='true' paragraph>
-						  Status for Request "March Supplies for Children's Art Project"
+						  Status for request <span className = "charity-card-action">"{this.state.gift.title}"</span>
 						</Typography>
 						<Typography variant="subheading" alignleft='true' paragraph>
 						  Click on each status to see more information
