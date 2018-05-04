@@ -3,7 +3,7 @@ import React, { Component } from "react"
 import HomeTemplate from "../components/HomeTemplate"
 
 import {MerchantPreButtons, MerchantActionButtons, MerchantPostButtons} from '../components/CardComponents'
-import {HomepageFilter} from "../components/GiftFilters"
+import {MerchantFilter} from "../components/GiftFilters"
 import {WeiToEther} from '../style/Formatter'
 import {UserType} from '../components/User'
 
@@ -19,7 +19,7 @@ class MerchantHome extends Component {
 
     const userType = UserType.MERCHANT
     const priceFunc = (gift) => WeiToEther(gift.donorDonationAmt)
-    const filter = HomepageFilter(true)
+    const filter = MerchantFilter(this.props.account)
     const sectioningFunc = (recipients) => {
       const bidFilter = (fulfilled) => (charity) => {
         const bids = charity.gifts[0].bids

@@ -6,7 +6,7 @@ import {
   DonorPreButtons,
   DonorActionButtons
 } from "../components/CardComponents"
-import {HomepageFilter} from "../components/GiftFilters"
+import {DonorFilter} from "../components/GiftFilters"
 import {PriceForItems} from '../components/Helpers'
 import {UserType} from '../components/User'
 
@@ -23,7 +23,7 @@ class DonorHome extends Component {
 
     const userType = UserType.DONOR
     const priceFunc = (gift) => PriceForItems(gift.items)
-    const filter = HomepageFilter(false)
+    const filter = DonorFilter()
 
     const sectioningFunc = (charities) => [{charities}]
 
