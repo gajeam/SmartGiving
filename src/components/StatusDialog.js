@@ -18,7 +18,6 @@ class StatusDialogContainer extends Component {
 				this.props.history.push(this.props.redirect)
 			}
 		}
-
 		return (
 			<div className = "status-dialog-container">
 				{this.props.children}
@@ -32,11 +31,12 @@ class StatusDialogContainer extends Component {
 			        		{this.props.error === undefined ? this.props.content : this.props.error.message}
 			            </DialogContentText>
 			        </DialogContent>
+					{this.props.hidebuttons !== true &&
 					<DialogActions>
 			            <Button onClick={onClick} color="primary" autoFocus>
 			              Got it
 			            </Button>
-					</DialogActions>
+					</DialogActions>}
 				</Dialog>       
 			</div>
 		)
@@ -58,7 +58,8 @@ export const StatusDialogKey = {
 	TITLE: "title",
 	CONTENT: "content",
 	ERROR: "error",
-	REDIRECT: "redirect"
+	REDIRECT: "redirect",
+	HIDE_BUTTONS: "hidebuttons"
 }
 
 export const StatusDialogCreateRequest = (err) => {
@@ -93,7 +94,6 @@ export const StatusDialogSelectMerchant = (err) => {
 		[StatusDialogKey.TITLE]: "Successfully selected a merchant",
 		[StatusDialogKey.CONTENT]: "The merchant should confirm that they have shipped your gift shortly. Once you receive the gift, make sure to confirm that you received it so you can make more requests.",
 		[StatusDialogKey.ERROR]: err,
-		[StatusDialogKey.REDIRECT]: '/home/charity'
 	}
 }
 
@@ -102,7 +102,6 @@ export const StatusDialogConfirmShipment = (err) => {
 		[StatusDialogKey.TITLE]: "Successfully confirmed your shipment",
 		[StatusDialogKey.CONTENT]: "The money has been transfered to your account. All that's left is for the recipient to confirm that they received your shipment. Then you'll be able to bid on other gifts.",
 		[StatusDialogKey.ERROR]: err,
-		[StatusDialogKey.REDIRECT]: '/home/merchant'
 	}
 }
 
@@ -111,6 +110,13 @@ export const StatusDialogConfirmGiftReceived = (err) => {
 		[StatusDialogKey.TITLE]: "Successfully confirmed gift received",
 		[StatusDialogKey.CONTENT]: "Thank you for confirming you received your gift. You are now welcome to make more gift requests.",
 		[StatusDialogKey.ERROR]: err,
-		[StatusDialogKey.REDIRECT]: '/home/charity'
+	}
+}
+
+export const StatusDialogWaiting = () => {
+	return {
+		[StatusDialogKey.TITLE]: "Waiting on the blockchain...",
+		[StatusDialogKey.CONTENT]: "Please be patient, as transactions on the Ethereum blockchain may take up to a minute.",
+		[StatusDialogKey.HIDE_BUTTONS]: true,
 	}
 }

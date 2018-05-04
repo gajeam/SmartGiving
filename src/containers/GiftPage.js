@@ -75,10 +75,7 @@ class GiftPage extends Component {
       this.props.showRequest(true, donationValue(), this.state.charity)
     }
 
-    const showDialog = (err) => {
-      const dialogFunc = userType === "donor" ? StatusDialogMakeDonation : StatusDialogMakeBid
-      this.props.openDialog(dialogFunc(err))
-    }
+    const dialog = (userType === "donor") ? StatusDialogMakeDonation : StatusDialogMakeBid
 
     const shippingSection = (textInfo) => {
       if (textInfo.location === undefined) return
@@ -204,7 +201,8 @@ class GiftPage extends Component {
             store={this.props.store}
             charity={this.state.charity}
             type={userType}
-            showDialog = {showDialog}
+            openDialog = {this.props.openDialog}
+            dialog = {dialog}
           />
         </div>
       </div>

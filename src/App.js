@@ -63,7 +63,9 @@ class App extends Component {
 	render() {
 		const openDialog = (dialogObject) => {
 			this.setState({dialogObject, dialogOpen:true})
-		}		
+		}
+		const dialog = this.state.dialogObject
+		
 		return (
 		  <MuiThemeProvider theme={theme}>
 			<ParallaxProvider
@@ -77,12 +79,14 @@ class App extends Component {
 					<div className="main">
 						<StatusDialogContainer
 							open={this.state.dialogOpen}
-							title={this.state.dialogObject[StatusDialogKey.TITLE]}
-							content={this.state.dialogObject[StatusDialogKey.CONTENT]}
-							error={this.state.dialogObject[StatusDialogKey.ERROR]}
-							redirect={this.state.dialogObject[StatusDialogKey.REDIRECT]}
+							title={dialog[StatusDialogKey.TITLE]}
+							content={dialog[StatusDialogKey.CONTENT]}
+							error={dialog[StatusDialogKey.ERROR]}
+							redirect={dialog[StatusDialogKey.REDIRECT]}
+							hidebuttons={dialog[StatusDialogKey.HIDE_BUTTONS]}
 							onClose={() => {
-								this.setState({dialogOpen:false})
+								if (dialog[StatusDialogKey.HIDE_BUTTONS] !== true)
+									this.setState({dialogOpen:false})
 						}}>
 						<Switch>
 							<Route

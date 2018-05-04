@@ -4,6 +4,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import { ImageLibrary } from "../components/ImageLibrary"
+import {StatusDialogWaiting} from "../components/StatusDialog"
 import "../style/Components.css";
 
 
@@ -34,6 +35,10 @@ class CharityHomeTop extends Component {
 	render() {
 		if (this.props.charity === undefined)
 			return <div/>
+
+		const testDialog = () => {
+			this.props.openDialog(StatusDialogWaiting())
+		}
 		const { classes } = this.props;
 			return(
 			<div>
@@ -48,7 +53,7 @@ class CharityHomeTop extends Component {
 				</div>
 
 				<div className='profile'>
-				  <Button className={classes.button} href="#/profile">
+				  <Button className={classes.button} onClick={testDialog}>
 			        Edit Profile
 			      </Button>
 			      <Button className={classes.button} href="#/createrequest">

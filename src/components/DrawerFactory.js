@@ -13,6 +13,7 @@ import {UpdateDatabase} from '../backend/APIManager'
 import DonationDrawer from '../components/DonationDrawer'
 import BidDrawer from '../components/BidDrawer'
 import {UserType} from '../components/User'
+import {StatusDialogWaiting} from '../components/StatusDialog'
 
 class DrawerFactory extends Component {
 
@@ -28,19 +29,26 @@ class DrawerFactory extends Component {
 			}
 		}
 
+	    const showFinishedDialog = (err) => {
+	      this.props.openDialog(this.props.dialog(err))
+	    }
+	    const showWaitingDialog = () => {
+	    	this.props.openDialog(StatusDialogWaiting())
+	    }
+
 
 		const drawerData = (props) => {
 			const [blockchainCall, requestFormatter] = blockchainFuncs(this.props.type)
 			const storeState = props.store.getState()
 			const onPrimary = (money) => () => {
+				showWaitingDialog()
 				const ethData = requestFormatter(this.props.charity, money)
-				console.log(ethData)
 				blockchainCall(ethData, (error) => {
 					if (error !== undefined) {
-						props.showDialog(error)
+						showFinishedDialog(error)
 					} else {
 						UpdateDatabase((err) => {
-							props.showDialog(err)
+							showFinishedDialog(err)
 						})
 					}
 				})
