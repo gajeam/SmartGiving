@@ -26,9 +26,11 @@ class CharityCard extends Component {
 					<div className="charity-card-desc">{this.props.description}</div>
 					{ this.props.preButtons.map((b, i) => b)}
 				</CardContent>
-				<CardActions className ="charity-card-buttons">
-				{ this.props.buttons.map((b, i) => b)}
-				</CardActions>
+				{this.props.buttons.length !== 0 &&
+					<CardActions className ="charity-card-buttons">
+					{ this.props.buttons.map((b, i) => b)}
+					</CardActions>
+				}
 				{postContentSection(this.props.postButtons)}
 			</Card>
 		)

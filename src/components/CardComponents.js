@@ -64,6 +64,16 @@ class MerchantConfirm extends Component {
 	}
 }
 
+class MerchantShipped extends Component {
+	render () {
+		return(
+			<div className = "charity-card-commitment-section">
+				<span className="charity-card-merchant-confirm">Thanks for shipping. The recipient must confirm they received your gift before you can bid again.</span> 
+			</div>
+		)
+	}
+}
+
 class DonorExpiry extends Component {
 	render () {
 		return (
@@ -91,13 +101,16 @@ const merchantBid = (request, merchantAddress) => {
 	}
 }
 
-
 const merchantStatus = (request, merchantAddress) => {
 	const bid = merchantBid(request, merchantAddress)
 	const winningMerchant = request.ethMerchantAddr
 	if (bid !== undefined) {
 		if (winningMerchant === merchantAddress) {
-			return "won"
+			if (request.merchantShipped === true) {
+				return "shipped"
+			} else {
+				return "won"
+			}
 		} else {
 			return "bid"
 		}
@@ -134,6 +147,8 @@ export const MerchantPreButtons = (request, merchantAddress) => {
 			return [<MerchantBid bid={bid} minBid={minBid} key={key()}/>]
 		case "open":
 			return [<DonorCommitment request={request} key={key()}/>]
+		case "shipped":
+			return [<MerchantShipped request={request} key={key()}/>]
 		default:
 			return [<div/>]
 	}
@@ -155,6 +170,8 @@ export const MerchantActionButtons = (charity, [onLearnMore, onBid], merchantAdd
 			bidText = "Bid Now"
 			moreInfoText = "Learn More"
 			break
+		case "shipped":
+			return []
 		default:
 			break
 	}

@@ -9,7 +9,6 @@ const HomepageFilter = (showFulfilled) => (charities) => {
 
 export const MerchantFilter = (merchantID) => (charities) => {
 	const filteredCharities = HomepageFilter(true)(charities)
-	console.log(filteredCharities)
 	return filteredCharities.filter(charity => charity.gifts[0].ethMerchantAddr === undefined || charity.gifts[0].ethMerchantAddr === merchantID)
 }
 
