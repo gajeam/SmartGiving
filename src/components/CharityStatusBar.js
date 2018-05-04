@@ -136,7 +136,7 @@ class CharityStatusBar extends Component {
               <SelectMerchant account={this.props.account} gift={this.props.gift} charity={this.props.charity} openDialog={this.props.openDialog}/>
             }
             {giftStatus === GiftStatus.MERCHANT_SHIPPED &&
-              <ItemReceivedButton charity={this.props.charity}/>
+              <ItemReceivedButton charity={this.props.charity} openDialog={this.props.openDialog}/>
             }
 		      </div>
 

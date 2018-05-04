@@ -38,9 +38,7 @@ class MerchantHome extends Component {
       return sections
 
     }
-    const showDialog = (err) => {
-      this.props.openDialog(StatusDialogMakeBid(err))
-    }
+    const dialog = (err) => StatusDialogMakeBid(err)
 
     return (
       <HomeTemplate store={this.props.store}
@@ -49,7 +47,8 @@ class MerchantHome extends Component {
                     priceFunc={priceFunc}
                     sectioningFunc={sectioningFunc}
                     userType={userType}
-                    showDialog={showDialog}
+                    openDialog={this.props.openDialog}
+                    dialog={dialog}
                     account={this.props.account}/>
       )
   }

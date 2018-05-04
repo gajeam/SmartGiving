@@ -25,9 +25,7 @@ class DonorHome extends Component {
     const userType = UserType.DONOR
     const priceFunc = (gift) => PriceForItems(gift.items)
     const filter = DonorFilter()
-    const showDialog = (err) => {
-      this.props.openDialog(StatusDialogMakeDonation(err))
-    }
+    const dialog = (err) => StatusDialogMakeDonation(err)
 
     const sectioningFunc = (charities) => [{charities}]
 
@@ -37,7 +35,8 @@ class DonorHome extends Component {
                     buttons={buttons}
                     sectioningFunc={sectioningFunc}
                     priceFunc={priceFunc}
-                    showDialog={showDialog}
+                    openDialog={this.props.openDialog}
+                    dialog={dialog}
                     userType={userType}/>
       )
   }
