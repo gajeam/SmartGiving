@@ -44,7 +44,7 @@ class Contribute extends Component {
 						<span className={classes.margin}>
 							<Typography variant="headline">
 							<a href="https://github.com/gajeam/SmartGiving_web" 
-							target="_blank" className={classes.link}> GitHub Repo </a>
+							target="_blank" rel="noopener noreferrer" className={classes.link}> GitHub Repo </a>
 							</Typography>
 						</span>
 					</div>

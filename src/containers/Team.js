@@ -79,7 +79,7 @@ class Team extends Component {
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
 							<a href="https://www.linkedin.com/in/morgansjordan/" 
-							target="_blank" rel="noopener"
+							target="_blank" rel="noopener noreferrer"
 							className={classes.link}> Morgan Jordan </a>
 							</Typography>
 						</span>
@@ -91,7 +91,7 @@ class Team extends Component {
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
 							<a href="https://www.linkedin.com/in/gnicho/" 
-							target="_blank" 
+							target="_blank" rel="noopener noreferrer"
 							className={classes.link}> Gabriel Nicholas </a>
 							</Typography>
 						</span>
@@ -103,7 +103,7 @@ class Team extends Component {
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
 							<a href="https://www.linkedin.com/in/selberthely/" 
-							target="_blank" 
+							target="_blank" rel="noopener noreferrer" 
 							className={classes.link}> Selenne Berthely </a>
 							</Typography>
 						</span>
@@ -115,7 +115,7 @@ class Team extends Component {
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
 							<a href="https://www.linkedin.com/in/lizlee0225/" 
-							target="_blank" 
+							target="_blank" rel="noopener noreferrer" 
 							className={classes.link}> Liz (Hyemin) Lee </a>
 							</Typography>
 						</span>
@@ -127,7 +127,7 @@ class Team extends Component {
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
 							<a href="https://www.linkedin.com/in/natalia-timakova/" 
-							target="_blank"
+							target="_blank" rel="noopener noreferrer"
 							className={classes.link}> Natalia Timakova </a>
 							</Typography>
 						</span>
@@ -136,12 +136,12 @@ class Team extends Component {
 					<div className={classes.intro}>
 						<Typography variant="subheading">
 						<span>
-						<p>We thank our adviser professor <a href="https://www.ischool.berkeley.edu/people/steven-weber" target="_blank" className={classes.link}>Steven Weber</a>.</p> 
+						<p>We thank our adviser professor <a href="https://www.ischool.berkeley.edu/people/steven-weber" target="_blank" rel="noopener noreferrer" className={classes.link}>Steven Weber</a>.</p> 
 						<p>In the research process, we interviewed a lot of great people who also deserve a mention.</p> 
-						<p>Carolyn Acosta from <a href="https://www.cigarra.org" target="_blank" className={classes.link}><i>Cigarra Foundation</i></a>, Colombia, 
+						<p>Carolyn Acosta from <a href="https://www.cigarra.org" target="_blank" rel="noopener noreferrer" className={classes.link}><i>Cigarra Foundation</i></a>, Colombia, 
 						Ana Elenis from <i>Fundación de Ayuda al Debil Mental</i>, and Humberto who runs <i>Unidos por gratitud AC</i>, both in Mexico, 
 						- thank you, guys! Your important work was the inspiration behind this project. </p>
-						<p><a href="http://alancantorconsulting.com/" target="_blank" className={classes.link}> Alan Cantor</a>, thank you for sharing your invaluable experience with us.</p>
+						<p><a href="http://alancantorconsulting.com/" target="_blank" rel="noopener noreferrer" className={classes.link}> Alan Cantor</a>, thank you for sharing your invaluable experience with us.</p>
 						<p>We would also like to thank our UC Berkeley peers - students who participated in surveys and helped build the product. 
 						Bonney Ruan, thank you for helping to code this and for the amazing characters that you created for our "How it works" animation.
 						Steve Trush, Jolijn van de Laar, and Justin Duan - your were a great aid in the usability testing.
