@@ -79,7 +79,7 @@ class Team extends Component {
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
 							<a href="https://www.linkedin.com/in/morgansjordan/" 
-							target="_blank" 
+							target="_blank" rel="noopener"
 							className={classes.link}> Morgan Jordan </a>
 							</Typography>
 						</span>
@@ -136,8 +136,7 @@ class Team extends Component {
 					<div className={classes.intro}>
 						<Typography variant="subheading">
 						<span>
-						<p>We thank our adviser professor <a href="https://www.ischool.berkeley.edu/people/steven-weber" target="_blank" className={classes.link}>Steven Weber</a> and 
-						our  second adviser professor <a href="https://www.ischool.berkeley.edu/people/doug-tygar" target="_blank" className={classes.link}> Doug Tygar</a>.</p> 
+						<p>We thank our adviser professor <a href="https://www.ischool.berkeley.edu/people/steven-weber" target="_blank" className={classes.link}>Steven Weber</a>.</p> 
 						<p>In the research process, we interviewed a lot of great people who also deserve a mention.</p> 
 						<p>Carolyn Acosta from <a href="https://www.cigarra.org" target="_blank" className={classes.link}><i>Cigarra Foundation</i></a>, Colombia, 
 						Ana Elenis from <i>Fundación de Ayuda al Debil Mental</i>, and Humberto who runs <i>Unidos por gratitud AC</i>, both in Mexico, 
