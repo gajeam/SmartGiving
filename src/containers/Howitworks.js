@@ -45,11 +45,11 @@ class Howitworks extends Component {
 
 
 					<Parallax data={{'data-top': 'opacity: 1; position:absolute; left:35%; top:90vh;','data-top-bottom': 'opacity: 0.3; transform:translateY(-50vh);'}}>
-						<div className='aida'></div>
+						<div className='Carolyn'></div>
 					</Parallax>
 
 					<Parallax data={{'data-center-center': 'opacity: 1; position:absolute; left: 50%; margin-right: -50%; transform: translateX(-50%); top:40vh;','data-top-bottom': 'opacity: 0;'}}>
-						<h2>Meet Aida</h2>
+						<h2>Meet Carolyn</h2>
 					</Parallax>
 
 					<Parallax data={{'data-bottom-top': 'opacity: 0; top:230vh;', 'data-center-center': 'opacity: 1; position:absolute; left:10%; top:63vh; width:20%;','data-top-bottom': 'opacity: 0; transform:translateY(-10vh);'}}>
@@ -65,15 +65,15 @@ class Howitworks extends Component {
 				{/*Scene-2*/}	
 
 					<Parallax data={{'data-80p': 'opacity: 1; position:absolute; top:180vh; left:35%;', 'data-110p': 'opacity:1;', 'data-top-bottom': 'opacity: 1; transform:translateY(-50vh);'}}>
-						<div className='donna'></div>
+						<div className='Juliette'></div>
 					</Parallax>
 
 					<Parallax data={{'data-bottom-top': 'opacity: 1; position:absolute; left: 50%; margin-right: -50%; transform: translateX(-50%);', 'data-110p': 'opacity: 1;  top:130vh;', 'data-top-bottom': 'opacity: 1;'}}>
-						<h2>Meet Donna</h2>
+						<h2>Meet Juliette</h2>
 					</Parallax> 
 
 					<Parallax data={{'data-bottom-top': 'opacity: 0; position:absolute; top:230vh;', 'data-108p': 'opacity: 1;  left:10%; top:175vh; width: 20%;','data-top-bottom': 'opacity: 1; transform:translateY(-30vh);'}}>
-						<p style={{fontSize: '1.1em'}}>She works in New York City and wants to donate to Aida's charity</p> <p style={{fontSize: '1.1em'}}>so that it would be as easy as shopping online, and as traceable as a local delivery.</p>
+						<p style={{fontSize: '1.1em'}}>She works in New York City and wants to donate to Carolyn's charity</p> <p style={{fontSize: '1.1em'}}>so that it would be as easy as shopping online, and as traceable as a local delivery.</p>
 					</Parallax>
 
 					<Parallax data={{'data-110p': 'opacity: 0; position: absolute; right:10%; top:177vh;', 'data-120p': 'opacity: 1; right:50%; top:177vh;','data-top-bottom': 'opacity: 1; transform:translateY(-30vh);'}}>
@@ -102,19 +102,19 @@ class Howitworks extends Component {
 					</Parallax>
 
 					<Parallax data={{'data-240p': 'opacity: 0; position: absolute; left:5%; top:320vh; width: 20%', 'data-250p': 'opacity: 1; left:25%; top:310vh;', 'data-330p': 'top: 360vh;', 'data-top-bottom': 'opacity: 0; transform:translateY(-30vh);'}}>
-						<div className='aida'></div>
+						<div className='Carolyn'></div>
 					</Parallax>
 
 					<Parallax data={{'data-245p': 'opacity:0; position:absolute; left:12%; width:10%; top: 320vh;', 'data-260p': 'opacity:1;', 'data-330p': 'top:370vh;', 'data-top-bottom': 'opacity: 0;  transform:translateY(-30vh);'}}>
-						<div><p style={{fontSize: '1.1em'}}><span style={{color: '#317EAC'}}>Step 1.&ensp;</span>Aida places a request for 20 textbooks</p></div>
+						<div><p style={{fontSize: '1.1em'}}><span style={{color: '#317EAC'}}>Step 1.&ensp;</span>Carolyn places a request for 20 textbooks</p></div>
 					</Parallax>
 
 					<Parallax data={{'data-255p': 'opacity:0; position: absolute; right:5%; top:320vh; width: 20%', 'data-265p': 'opacity: 1; right:15%; top:320vh;', 'data-330p': 'top: 360vh;', 'data-top-bottom': 'opacity: 0; transform:translateY(-30vh);'}}>
-						<div className='donna'></div>
+						<div className='Juliette'></div>
 					</Parallax>
 
 					<Parallax data={{'data-260p': 'opacity:0; position: absolute; left: 78%; top: 330vh;  width:10%;', 'data-275p': 'opacity: 1;', 'data-330p': 'top:370vh;', 'data-top-bottom': 'opacity: 0; transform:translateY(-30vh);'}}>
-						<div><p style={{fontSize: '1.1em'}}><span style={{color: '#317EAC'}}>Step 2.&ensp;</span>Donna pledges a $200 donation to meet this need</p></div>
+						<div><p style={{fontSize: '1.1em'}}><span style={{color: '#317EAC'}}>Step 2.&ensp;</span>Juliette pledges a $200 donation to meet this need</p></div>
 					</Parallax>
 
 					<Parallax data={{'data-270p': 'opacity:0; position: absolute; right:5%; top:352vh;', 'data-285p': ' opacity:1; right: 55%;' ,'data-320p': 'top: 370vh; right: 110%;'}}>
@@ -143,13 +143,13 @@ class Howitworks extends Component {
 
 
 					<Parallax data={{'data-275p': 'opacity:0; width: 28%; position:absolute; left: 50%; margin-right: -50%; transform: translateX(-50%);', 'data-285p': 'opacity: 1;  top:295vh;',  'data-top-bottom': 'opacity: 0;'}}>
-					<div><p style={{fontSize: '1.1em'}}><span style={{color: '#317EAC'}}>Step 3.&ensp;</span>A pool of merchants offer their bids and Aida chooses a winner among the three lowest</p></div>
+					<div><p style={{fontSize: '1.1em'}}><span style={{color: '#317EAC'}}>Step 3.&ensp;</span>A pool of merchants offer their bids and Carolyn chooses a winner among the three lowest</p></div>
 					</Parallax>
 
 
 					<Parallax data={{'data-315p': 'opacity:0; width: 30%; display: flex; position:absolute; left: 50%; margin-right: -50%; transform: translateX(-50%); top: 375vh;', 'data-320p': 'opacity: 1;  top:375vh;', 'data-top-bottom': 'opacity: 0; transform:translateY(-30vh);'}}>
 					<div>
-					<div style={{float:'left', width:'70%', height: '100%', display: 'flex', alignItems: 'center'}}> <p style={{fontSize: '1.1em'}}><span style={{color: '#317EAC'}}>Step 4.&ensp;</span><i>Mercado Colombia</i> bids $180 and wins the right to deliver 20 textbooks to Aida </p></div>
+					<div style={{float:'left', width:'70%', height: '100%', display: 'flex', alignItems: 'center'}}> <p style={{fontSize: '1.1em'}}><span style={{color: '#317EAC'}}>Step 4.&ensp;</span><i>Mercado Colombia</i> bids $180 and wins the right to deliver 20 textbooks to Carolyn </p></div>
 					<div className='books' style={{float:'right', width:'30%', marginTop: 'auto'}}></div>
 					</div>
 					</Parallax>	
@@ -204,11 +204,11 @@ class Howitworks extends Component {
 
 
 					<Parallax data={{'data-600p': 'opacity: 0;', 'data-610p': 'opacity: 1; position:absolute; top:625vh; left:28%;','data-700p': 'opacity: 0;'}}>
-						<div className='donna'></div>
+						<div className='Juliette'></div>
 					</Parallax>
 
 					<Parallax data={{'data-600p': 'opacity: 0;', 'data-610p': 'opacity: 1; position:absolute; top:635vh; left:48%; width: 20%;','data-top-bottom': 'opacity: 0;'}}>
-						<div><p style={{fontSize: '1.1em'}}>Good eye! Donna received her change of $20 once the contract was executed.</p></div>
+						<div><p style={{fontSize: '1.1em'}}>Good eye! Juliette received her change of $20 once the contract was executed.</p></div>
 					</Parallax>
 
 					<Parallax data={{'data-610p': 'opacity: 0;', 'data-620p': 'opacity: 1; position:absolute; top:650vh; left:48%; width: 20%;','data-top-bottom': 'opacity: 0;'}}>
@@ -225,7 +225,7 @@ class Howitworks extends Component {
 
 			  <div className='ScrollAllWayUpContainer'><ScrollAllWayUp /> </div>
 			  
-			  
+			<p style={{fontSize: '0.8em', textAlign: 'center'}}> Acknowledgements. The store icon is created by b farias; the shopping cart icon is by tonicons.com; the textbooks and graduation caps - pngtree.com. Characters of Carolyn, Juliette, childrean and scroll are created by Bonney Ruan.</p>
 		</div>
     );
   }

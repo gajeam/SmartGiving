@@ -19,6 +19,8 @@ import GiftPage from './containers/GiftPage'
 import GetAllStats from './ethereum/components/GetAllStats'
 import GetActiveGifts from "./containers/GetActiveGifts"
 import Team from './containers/Team'
+import Contribute from './containers/Contribute'
+import Whitepaper from './containers/Whitepaper'
 import CreateUser from './containers/CreateUser'
 import StatusDialogContainer, {StatusDialogKey} from './components/StatusDialog'
 
@@ -94,6 +96,10 @@ class App extends Component {
 								component={Home} />
 
 							<Route path="/home/team" component={Team} />
+
+							<Route path="/home/contribute" component={Contribute} />
+
+							<Route path="/home/whitepaper" component={Whitepaper} />
 
 							<Route path="/home/howitworks" component={Howitworks} />
 							
