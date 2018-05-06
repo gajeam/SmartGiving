@@ -13,6 +13,8 @@ import Sel from '../images/Sel.png';
 
 import ischoolLogo from '../images/berkeleyischool-logo-blue.svg';
 
+
+
 const styles = theme => ({
   margin: {
     margin: theme.spacing.unit * 2,
@@ -20,9 +22,6 @@ const styles = theme => ({
   intro: {
     width: '60%',
     margin: 40,
-  },
-  button: {
-    marginRight: theme.spacing.unit,
   },
   container: {
   	display: 'flex',
@@ -44,8 +43,15 @@ const styles = theme => ({
   	width: '20%',
   	height: '10vh',
   	marginLeft: 40,
+  },
+  link: {
+  	textDecoration: 'none', 
+  	color: '#828384',
   }
 }); 
+
+
+
 
 class Team extends Component {
 // @Natasha write your code here
@@ -72,7 +78,9 @@ class Team extends Component {
 					        src={Morgan}
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
-							Morgan Jordan
+							<a href="https://www.linkedin.com/in/morgansjordan/" 
+							target="_blank" rel="noopener noreferrer"
+							className={classes.link}> Morgan Jordan </a>
 							</Typography>
 						</span>
 
@@ -82,7 +90,9 @@ class Team extends Component {
 					        src={Gabe}
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
-							Gabriel Nicholas
+							<a href="https://www.linkedin.com/in/gnicho/" 
+							target="_blank" rel="noopener noreferrer"
+							className={classes.link}> Gabriel Nicholas </a>
 							</Typography>
 						</span>
 
@@ -92,7 +102,9 @@ class Team extends Component {
 					        src={Sel}
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
-							Selenne Berthely
+							<a href="https://www.linkedin.com/in/selberthely/" 
+							target="_blank" rel="noopener noreferrer" 
+							className={classes.link}> Selenne Berthely </a>
 							</Typography>
 						</span>
 
@@ -102,7 +114,9 @@ class Team extends Component {
 					        src={Liz}
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
-							Liz (Hyemin) Lee
+							<a href="https://www.linkedin.com/in/lizlee0225/" 
+							target="_blank" rel="noopener noreferrer" 
+							className={classes.link}> Liz (Hyemin) Lee </a>
 							</Typography>
 						</span>
 
@@ -112,7 +126,9 @@ class Team extends Component {
 					        src={Nat}
 					        className={classes.bigAvatar}/>
 							<Typography variant="headline" className={classes.caption}>
-							Natalia Timakova
+							<a href="https://www.linkedin.com/in/natalia-timakova/" 
+							target="_blank" rel="noopener noreferrer"
+							className={classes.link}> Natalia Timakova </a>
 							</Typography>
 						</span>
 					</div>
@@ -120,16 +136,16 @@ class Team extends Component {
 					<div className={classes.intro}>
 						<Typography variant="subheading">
 						<span>
-						We thank our adviser professor <a href="https://www.ischool.berkeley.edu/people/steven-weber"  style={{textDecoration: 'none', color: '#343535'}}>Steven Weber</a> and 
-						our  second adviser professor <a href="https://www.ischool.berkeley.edu/people/doug-tygar"  style={{textDecoration: 'none', color: '#343535'}}> Doug Tygar</a>. 
-						In the research process, we interviewed a lot of great people who also deserve a mention. 
-						Carolyn Acosta from <a href="https://www.cigarra.org"  style={{textDecoration: 'none', color: '#343535'}}><i>Cigarra Foundation</i></a>, Colombia, 
+						<p>We thank our adviser professor <a href="https://www.ischool.berkeley.edu/people/steven-weber" target="_blank" rel="noopener noreferrer" className={classes.link}>Steven Weber</a>.</p> 
+						<p>In the research process, we interviewed a lot of great people who also deserve a mention.</p> 
+						<p>Carolyn Acosta from <a href="https://www.cigarra.org" target="_blank" rel="noopener noreferrer" className={classes.link}><i>Cigarra Foundation</i></a>, Colombia, 
 						Ana Elenis from <i>Fundación de Ayuda al Debil Mental</i>, and Humberto who runs <i>Unidos por gratitud AC</i>, both in Mexico, 
-						- thank you, guys! Your important work was the inspiration behind this project. 
-						We would also like to thank our UC Berkeley peers - students who participated in surveys and helped build the product. 
+						- thank you, guys! Your important work was the inspiration behind this project. </p>
+						<p><a href="http://alancantorconsulting.com/" target="_blank" rel="noopener noreferrer" className={classes.link}> Alan Cantor</a>, thank you for sharing your invaluable experience with us.</p>
+						<p>We would also like to thank our UC Berkeley peers - students who participated in surveys and helped build the product. 
 						Bonney Ruan, thank you for helping to code this and for the amazing characters that you created for our "How it works" animation.
 						Steve Trush, Jolijn van de Laar, and Justin Duan - your were a great aid in the usability testing.
-						Finally, Edward Yip - we shall thank you for our logo. If it weren't for you, we wouldn't probably even create one!
+						Finally, Edward Yip - we shall thank you for our logo. If it weren't for you, we would probably with our weird "alien's hands" logo.</p>
 						</span>    
 						</Typography>
 					</div>

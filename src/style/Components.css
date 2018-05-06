@@ -1,3 +1,7 @@
+html,body {
+	overflow-x: hidden;
+}
+
 body {
 	padding: 0;
 	font-family: 'Roboto', sans-serif;
@@ -197,7 +201,8 @@ h1, h2, h3{
 .home-intro-video {
 	flex-basis: auto;
 	margin: 15px;
-
+	box-shadow: 6px 6px 4px #888888;
+	border: solid 1px #888888;
 }
 
 .big-buttons-container {
@@ -365,7 +370,7 @@ h1, h2, h3{
 }
 
 
-.aida {
+.Carolyn {
 	background:url(../images/carolyn.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -374,8 +379,8 @@ h1, h2, h3{
     display: flex;
 }
 
-.donna {
-    background:url(../images/donna.png);
+.Juliette {
+    background:url(../images/juliette.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 200px;
@@ -488,3 +493,15 @@ h1, h2, h3{
 	display:flex;
 	justify-content: flex-end;
 }
+
+
+/*Team*/
+
+.teamlink {
+  	text-decoration: 'none'; 
+  	color: 'red';
+  }
+
+ .teamlink:hover {
+  	color: 'blue';
+  }
