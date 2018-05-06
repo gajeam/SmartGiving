@@ -42,7 +42,7 @@ class Home extends Component {
 			    </div>
 
 				<div className="home-intro-video">
-					<ReactPlayer url="https://youtu.be/g83mXlikm-8"/>
+					<ReactPlayer url="https://www.youtube.com/watch?v=-FWwdGPxp64&feature=youtu.be"/>
 				</div>
 
 			</div>

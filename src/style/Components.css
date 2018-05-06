@@ -202,6 +202,7 @@ h1, h2, h3{
 	flex-basis: auto;
 	margin: 15px;
 	box-shadow: 6px 6px 4px #888888;
+	border: solid 1px #888888;
 }
 
 .big-buttons-container {
