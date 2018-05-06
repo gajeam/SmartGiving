@@ -13,6 +13,7 @@ import { withStyles } from 'material-ui/styles';
 const styles = theme => ({
   root: {
     display: 'flex',
+    zIndex: '6', 
   },
   paper: {
     marginRight: theme.spacing.unit * 2,
