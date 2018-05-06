@@ -1,4 +1,5 @@
 const weiPerEther = 1000000000000000000.0
+const dollarsPerEther = 820.0
 export const DigitsPerEther = 5
 
 export const StringFromDate = (a) => {
@@ -19,7 +20,6 @@ export const UnixFromString = (s) => {
 }
 
 export const DollarsToEther = (dollars) => {
-	const dollarsPerEther = 421.0 // TODO: Get this price dynamically
 	return (parseFloat(dollars)/dollarsPerEther).toFixed(DigitsPerEther)
 }
 
@@ -30,7 +30,6 @@ export const PriceForGift = (gift) => {
 }
 
 export const WeiToDollars = (wei) => {
-	const dollarsPerEther = 421.0 // TODO: Get this price dynamically
 	return ((parseFloat(wei) * dollarsPerEther) / weiPerEther).toFixed(2)
 }
 
