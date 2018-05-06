@@ -25,8 +25,8 @@ const styles = theme => ({
 /*these are links attached to the three buttons inside the toggle menu*/
 
 const LinkToTeam = props => <Link to="/home/team" {...props} />
-const LinkToContribute = props => <Link to="/" {...props} />
-const LinkToWhitepaper = props => <Link to="/" {...props} />
+const LinkToContribute = props => <Link to="/home/contribute" {...props} />
+const LinkToWhitepaper = props => <Link to="/home/whitepaper" {...props} />
 
 class AboutUsToggle extends Component {
   state = {
